@@ -1,0 +1,54 @@
+@import "./variables.css";
+
+body {
+  margin: 0;
+  font-family: 'Calistoga', cursive;
+}
+
+.header {
+  background-color: var(--color-principal);
+  color: var(--color-texto);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #FCD1C6;
+  text-align: center;
+}
+
+.ingresar {
+  color: white;
+  cursor: pointer;
+  display: flex
+  
+}
+
+.nav-link {
+  position: relative; /* Necesario para que funcione ::after */
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-link::after {
+  content: ''; /* Se utiliza para generar la rayita */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0; /* La línea inicia invisible */
+  height: 2px;
+  background-color: var(--color-FondoDiv2); /* Color de la rayita */
+  transition: width 0.3s ease-in-out; /* Animación suave */
+}
+
+.nav-link:hover {
+  color: var(--color-fondoDiv); /* Cambia el color del texto al pasar el mouse */
+}
+
+.nav-link:hover::after {
+  width: 100%; /* La rayita se expande completamente */
+}

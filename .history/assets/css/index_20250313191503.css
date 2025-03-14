@@ -1,0 +1,67 @@
+@import "./variables.css";
+
+body {
+  margin: 0;
+  font-family: 'Calistoga';
+}
+
+.header {
+  background-color: var(--color-principal);
+  color: var(--color-texto);
+  font-size: 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #FCD1C6;
+  text-align: center;
+}
+
+.ingresar {
+  color: white;
+  cursor: pointer;
+  display: flex;
+  gap: 20px;
+ 
+}
+.ingresar h5:hover {
+    color: var(--color-fondoDiv);
+   
+   
+  }
+
+
+.nav-link {
+  position: relative; /* Necesario para que funcione ::after */
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+  transition: color 0.3s ease-in-out;
+  
+}
+
+.nav-link::after {
+  content: ''; /* Se utiliza para generar la rayita */
+  position: absolute;
+  left: 15px;
+  bottom: 0;
+  width: 0; /* La línea inicia invisible */
+  height: 2px;
+  background-color: var(--color-FondoDiv2); /* Color de la rayita */
+  transition: width 0.3s ease-in-out; /* Animación suave */
+}
+
+.nav-link:hover {
+  color: var(--color-fondoDiv); /* Cambia el color del texto al pasar el mouse */
+}
+
+.nav-link:hover::after {
+  width: 75%; /* La rayita se expande completamente */
+}
+. {
+    height: 400px;
+    object-fit: cover; /* Mantiene la proporción */
+  }
+  

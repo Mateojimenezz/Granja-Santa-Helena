@@ -1,0 +1,37 @@
+@import "./variables.css";
+body {
+    margin: 0;
+    font-family: 'Calistoga', cursive;
+  }
+
+  .header {
+    background-color:var(--color-principal);
+    color:var(--color-texto);
+    
+  }
+
+  .nav-link {
+    color:var(--color-texto);
+    transition: color 0.3s;
+  }
+
+  .nav-link:hover {
+    color: #ff9800;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 1 rem;
+    color: #FCD1C6;
+    text-align:center;
+  }
+
+  .ingresar {
+    color: white;
+    cursor: pointer;
+  }
+
+  .ingresar:hover {
+    color: #ff9800;
+  }

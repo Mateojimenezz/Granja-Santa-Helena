@@ -1,0 +1,35 @@
+@import "./variables.css"
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .header {
+    background-color:var(--color-principal);
+    color:var
+    padding: 1rem;
+  }
+
+  .nav-link {
+    color: white;
+    transition: color 0.3s;
+  }
+
+  .nav-link:hover {
+    color: #ff9800;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .ingresar {
+    color: white;
+    cursor: pointer;
+  }
+
+  .ingresar:hover {
+    color: #ff9800;
+  }

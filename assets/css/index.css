@@ -1,0 +1,143 @@
+@import "./variables.css";
+
+body {
+  margin: 0;
+  font-family: 'Calistoga';
+  background-color: var(--color-FondoDiv2);
+}
+.header {
+  background-color: var(--color-principal);
+  color: var(--color-texto);
+  font-size: 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #FCD1C6;
+  text-align: center;
+  margin-left: 25px;
+}
+
+.ingresar {
+  color: white;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  margin-left: 110px;
+  margin-right: 100px;
+ 
+}
+.ingresar h5:hover {
+    color: var(--color-fondoDiv);
+    
+  }
+.navar-nav{
+  justify-content: center;
+}
+.nav-link {
+  position: relative; /* Necesario para que funcione ::after */
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+  transition: color 0.3s ease-in-out;
+  
+}
+
+.nav-link::after {
+  content: ''; /* Se utiliza para generar la rayita */
+  position: absolute;
+  left: 15px;
+  bottom: 0;
+  width: 0; /* La línea inicia invisible */
+  height: 2px;
+  background-color: var(--color-FondoDiv2); /* Color de la rayita */
+  transition: width 0.3s ease-in-out; /* Animación suave */
+}
+
+.nav-link:hover {
+  color: var(--color-fondoDiv); /* Cambia el color del texto al pasar el mouse */
+}
+
+.nav-link:hover::after {
+  width: 75%; /* La rayita se expande completamente */
+}
+/* section1 */
+.imagen1 {
+    width: 100%;;
+    height: 500px;
+    object-fit: cover; /* Mantiene la proporción */
+  }
+  
+  
+  .titulo1 {
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Ajusta para una alineación perfecta al centro */
+    color: white; /* Color del texto */
+    font-size: 4rem; /* Tamaño del texto, ajusta según prefieras */
+    font-weight: bold; /* Hace el texto más destacado */
+    text-shadow: 2px 2px 5px var(--color-principal); /* Agrega un sombreado para que el texto sea más visible */
+    text-align: center;
+  }
+  
+  .seccion-3{
+    background-color: var(--color-fondoDiv);
+  }
+  /* footer */
+  .footer{
+    background-color: var( --color-Footter);
+    padding-left: 50px;
+    padding-bottom: 0px;
+    margin-block-end: 0px;
+    margin-bottom: -50px;
+    
+  } 
+.Logofooter{
+    max-width: 250px;
+    margin-right: 50px;
+  }
+   
+  /* Opcional para más personalización  en pantalla chica*/
+  
+  @media (max-width: 575.98px) and (max-width: 991px) {
+    /* Header */
+    .logo {
+      margin-left: -10px;
+    }
+    .navbar-toggler {
+      border: none !important; /* Borde por defecto */
+    }
+    
+    .navbar-toggler:focus {
+      outline: none !important; /* Elimina cualquier borde blanco predeterminado */
+      box-shadow: 0 0 10px #F8E91C !important; /* Sombra personalizada */
+    }
+  
+    .navbar-toggler:active, 
+    .navbar-toggler:hover {
+      outline: none !important; /* Asegúrate de que no haya ningún borde no deseado */
+      box-shadow: 0 0 10px #F8E91C !important; /* Mantén el estilo consistente */
+    }
+    .ingresar{
+      display: none;
+
+    }
+    .ingresar1{
+    display: flex;
+     gap:10px;
+    }
+    .ingresar1 .bi{
+      padding-top: 5px;
+    }
+    .ingresar1 h5:hover{
+      color: var(--color-fondoDiv);
+    }
+  
+
+    }
+   
+  
+  
