@@ -1,0 +1,136 @@
+@import "./variables.css";
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #FFF2F2;
+    /* Fondo corregido */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 105vh;
+}
+
+.login-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Botón de regresar */
+.btn-regresar {
+    position: absolute;
+    top: -40px;
+    left: 5px;
+    background: none;
+    border: none;
+    color: var(--color-principal);
+    /* Verde */
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-regresar:hover {
+    color: var();
+}
+
+.login-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 350px;
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #008000;
+    font-size: 1.3rem;
+}
+
+/* Estilo de los campos de entrada */
+.input-group {
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 1.8px solid #008000;
+    border-radius: 6px;
+    padding: 8px 10px;
+    /* Reduje el padding para que no se agrande */
+    margin-bottom: 12px;
+    width: 100%;
+    max-width: 320px;
+}
+
+.input-group i {
+    font-size: 1rem;
+    /* Reducido */
+    color: #008000;
+    margin-right: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
+    /* Tamaño más equilibrado */
+    padding: 5px 0;
+    /* Ajuste del padding */
+}
+
+.btn-login {
+    width: 100%;
+    background-color: #008000;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    background-color: darkgreen;
+}
+
+p {
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+a {
+    color: #008000;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.logo {
+    width: 150px;
+    display: block;
+    margin: 0 auto 15px;
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 10px;
+    color: #008000;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.forgot-password:hover {
+    color: darkgreen;
+    transform: scale(1.05);
+    text-decoration: underline;
+}

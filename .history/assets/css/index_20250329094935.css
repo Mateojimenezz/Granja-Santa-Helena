@@ -1,0 +1,149 @@
+@import "./variables.css";
+
+/* === General === */
+body {
+  margin: 0;
+  font-family: var(--font-principal);
+  background-color: var(--color-FondoDiv2);
+}
+
+/* === Header === */
+.header {
+  background-color: var(--color-principal);
+  color: var(--color-texto);
+  font-size: 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #FCD1C6;
+  text-align: center;
+  margin-left: 25px;
+}
+
+/* === Botón Ingresar === */
+.ingresar,
+.ingresar1 {
+  color: white !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ingresar {
+  margin-left: 110px;
+  margin-right: 100px;
+}
+
+.ingresar h5:hover,
+.ingresar1 h5:hover {
+  color: var(--color-fondoDiv);
+}
+
+/* === Navbar === */
+.navar-nav {
+  justify-content: center;
+}
+
+.nav-link {
+  position: relative;
+  color: red;
+  text-decoration: none;
+  padding: 0.5rem;
+  transition: color 0.3s ease-in-out;
+}
+.nav-link:active{
+  color: red;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 15px;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-FondoDiv2);
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: var(--color-fondoDiv);
+}
+
+.nav-link:hover::after {
+  width: 75%;
+}
+
+/* === Sección 1 - Imagen Principal === */
+.imagen1 {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.titulo1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 4rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px var(--color-principal);
+  text-align: center;
+}
+
+/* === Sección 3 === */
+.seccion-3 {
+  background-color: var(--color-fondoDiv);
+}
+
+/* === Footer === */
+.footer {
+  background-color: var(--color-Footter);
+  padding-left: 50px;
+  padding-bottom: 0px;
+  margin-bottom: -50px;
+}
+
+.Logofooter {
+  max-width: 250px;
+  margin-right: 50px;
+}
+
+/* === Responsividad === */
+@media (max-width: 991px) {
+
+  /* Ajustes en dispositivos pequeños */
+  .logo {
+    margin-left: -10px;
+  }
+
+  .navbar-toggler {
+    border: none !important;
+  }
+
+  .navbar-toggler:focus,
+  .navbar-toggler:active,
+  .navbar-toggler:hover {
+    outline: none !important;
+    box-shadow: 0 0 10px #F8E91C !important;
+  }
+
+  /* Ocultar ingresar en pantallas pequeñas y mostrar ingresar1 */
+  .ingresar {
+    display: none;
+  }
+
+  .ingresar1 {
+    display: flex;
+  }
+
+  .ingresar1 .bi {
+    padding-top: 5px;
+  }
+}

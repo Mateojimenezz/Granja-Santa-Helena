@@ -1,0 +1,45 @@
+@import "./variables.css";
+
+
+body {
+    background-color: var(--color-FondoDiv2);/* Color rosa claro */
+  }
+  .container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 450px;
+    margin: auto;
+    margin-top: 50px;
+  }
+  .container h2{
+    font-family: var( --font-principal);
+    font-size: 1.3rem;
+  }
+  .btn-custom {
+    background-color: var(  --color-Botones);
+    padding: 10px 35px;
+    border-radius: 30px;
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 4px 5px 1px  rgba(25, 157, 60, 0.6) /* Sombra verde */
+  }
+  .btn-custom:hover {
+    background-color: #f4cf50; /* Tonalidad más oscura */
+    color: black;
+  }
+  .btn-custom:active {
+    background-color: var() !important;
+    color: white !important;
+    box-shadow: none !important;
+  }
+  
+  
+  .formulario,.form-control{
+    font-size: 0.8rem;
+    color: var(--letra-gris);
+  }
+  .form-control{
+    box-shadow: 0 2px 5px 1px  rgba(25, 157, 60, 0.6) /* Sombra verde */
+  }
