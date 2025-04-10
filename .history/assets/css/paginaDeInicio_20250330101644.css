@@ -1,0 +1,43 @@
+#sidebar {
+  display: none;
+  transition: all 0.3s ease; /* Animación opcional */
+}
+
+#sidebar.open {
+  display: block;
+}
+.btn-MenuLateralAbrir{
+  margin-top: -5px;
+  margin-left: -10px;
+  font-size: 30px;
+  font-weight: 700;
+
+}
+
+.btn-MenuLateralCerrar{
+  margin-top: -20px;
+  margin-left: 190px;
+  font-size: 25px;
+
+}
+/* Ajuste inicial para el contenido principal */
+.container {
+  margin-left: 0; /* Sin margen cuando el menú está cerrado */
+  transition: margin-left 0.3s ease; /* Suaviza el desplazamiento */
+}
+
+/* Cuando el menú lateral está abierto */
+#sidebar.open + main.container {
+  margin-left: 250px; /* Desplazar el contenido para dar espacio al menú */
+}
+/* Estilos iniciales: menú oculto */
+#sidebar {
+  transform: translateX(-100%); /* Oculto hacia la izquierda */
+  transition: transform 0.3s ease; /* Animación suave */
+  position: fixed;
+}
+
+/* Menú visible cuando tiene la clase "open" */
+#sidebar.open {
+  transform: translateX(0); /* Regresa a su lugar */
+}
