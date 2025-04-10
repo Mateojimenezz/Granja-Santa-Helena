@@ -1,0 +1,235 @@
+@import "./variables.css";
+
+/* === General === */
+body {
+  overflow-x: hidden; /* Elimina scroll horizontal globalmente */
+  width: 100%; /* Asegura que el cuerpo ocupe todo el ancho */
+  box-sizing: border-box;
+  position: relative; /* Asegura que el cuerpo sea el contenedor principal */
+  z-index: 1; /* Mantén el cuerpo en la base de la jerarquía */
+}
+
+#sidebar {
+  display: none;
+  transition: all 0.3s ease; /* Animación opcional */
+  background-color: var(--color-menu-lateral); /* Color de fondo del menú lateral */
+  position: fixed; /* Fija el menú lateral */
+  top: 90px; /* Ajusta la posición superior según el encabezado */
+  left: 0;
+  bottom: 30px; /* Ajusta la posición inferior según el pie de página */
+  width: 250px; /* Ajusta al ancho necesario */
+  overflow-y: auto; /* Permitir desplazamiento vertical */
+  z-index: 2 !important; /* Asegura que el menú esté por encima de otros elementos */
+  max-height: 100vh; /* Asegura que el contenido no exceda la pantalla */
+  overflow-y: scroll; /* Habilita el desplazamiento vertical */
+  scrollbar-width: thin; /* Reduce el grosor de la barra en Firefox */
+  scrollbar-color: transparent transparent; /* Hace la barra invisible en Firefox */
+    
+ }
+ #sidebar::-webkit-scrollbar {
+  width: 0; /* Oculta la barra de desplazamiento en navegadores basados en WebKit */
+}
+    
+#sidebar::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Asegura que el pulgar sea invisible */
+}
+
+#sidebar.open {
+  display: block;
+}
+.btn-MenuLateralAbrir{
+  margin-top: -5px;
+  margin-left: -10px;
+  font-size: 30px;
+  font-weight: 700;
+  border:none;
+
+}
+
+.btn-MenuLateralCerrar{
+  margin-top: -240px;
+  margin-left: 190px;
+  font-size: 25px;
+  border:none;
+}
+.seccion-1 h1{
+    font-family: var(--font-principal);
+    color:  #FFBB00;
+    font-size: 3.5em;
+    font-weight: bold;
+    text-shadow: gray 1px 2px 5px;
+                
+}
+.seccion-2{
+  font-size: 1.3em;
+  font-family: Arial;
+}
+
+
+/* Submenú dentro del menú lateral */
+#sisidebarMenu .submenu {
+  margin-left: -10px; /* Ajustar margen */
+  list-style: none; /* Eliminar viñetas */
+  
+}
+
+/* Ocultar los submenús en el encabezado */
+.nav-item .submenu {
+  display: none;
+}
+
+.nav-item.active .submenu {
+  display: block; /* Mostrar submenús al hacer clic en pantallas pequeñas */
+}
+
+/* Animación para mostrar el menú lateral */
+
+/* Estilos para la sección de usuario */
+.user-info {
+  align-items: center;
+  padding: 10px;
+}
+
+.user-photo {
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  border: 2px solid grey;
+  border-radius: 50%; /* Hace que la imagen sea redonda */
+  margin-right: 10px;
+}
+
+.user-name {
+  font-size: 0.8em;
+  margin-top: 5px;
+  color: #333;
+}
+
+/* Estilos para el botón de cerrar sesión */
+.logout-button {
+  position:fixed;
+  bottom: 20px;
+  left: 20px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  background-color: var(  --color-Botones);
+  padding: 10px 35px;
+  border-radius: 30px;
+  color: black;
+  z-index: 1 !important; /* Asegura que el botón esté por encima de otros elementos */
+  box-shadow: 0 4px 8px 1px  rgba(25, 157, 60, 0.6) /* Sombra verde */
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+  color: white;
+  
+
+  
+}
+/* Estilos para los enlaces del menú lateral */
+#sidebar .nav-link {
+  font-size: 0.9em;
+  color: var(--color-TextoMenuLateral); /* Color personalizado para los enlaces */
+}
+#sidebar .submenu .nav-link {
+  font-family: arial;
+  font-size:0.8em;
+  color:var(--color-principal) !important; /* Color personalizado para el submenú */
+}
+
+#sidebar  .nav-link:hover {
+  color:var(--color-principal); /* Color activo para los enlaces del submenú */
+}
+
+
+#sidebar .submenu .nav-link:focus{
+  color: var(--color-TextoMenuLateral) !important; /* Asegura que el color sea consistente */
+  font-weight: bold; /* Resalta el enlace activo */
+}
+/* estlos para sub-submenu */
+/* Submenú y sub-submenú del menú lateral */
+#sidebar .submenu,
+#sidebar .sub-submenu {
+  list-style: none;
+  margin-left: 10px; /* Ajustar margen */
+  padding: 0; /* Eliminar padding */
+  transition: all 0.3s ease-in-out; /* Animación suave */
+  display: none; /* Ocultos por defecto */
+}
+
+#sidebar .submenu-visible,
+#sidebar .sub-submenu-visible {
+  display: block !important; /* Mostrados al alternar visibilidad */
+}
+
+/* Diferenciación visual para sub-submenús */
+#sidebar .sub-submenu {
+  padding-left: 20px; /* Sangría para jerarquía */
+  border-left: 2px solid #ddd; /* Línea para indicar nivel */
+}
+
+/* Opcional: estilos para enlaces activos en el menú lateral */
+#sidebar .nav-link:hover {
+  background-color: #f5f6f8; /* Fondo azul para destacar */
+  
+}
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+/* === Estilos para pantallas pequeñas === */
+
+@media (max-width: 991px) { /* Para pantallas menores a md */
+  #sidebar {
+    display: none !important; /* Oculta el menú lateral */
+  }
+ 
+  #toggleMenu, #closeMenu {
+    display: none !important; /* Oculta los botones asociados */
+
+  }
+  #sidebar.open {
+    display: block;
+  }
+  .submenu, .sub-submenu {
+    list-style-type: none; /* Elimina viñetas */
+    padding: 0;
+    margin: 0;
+  }
+.submenu{
+  margin-left: 20px; /* Ajusta el espacio externo */
+  font-family: Arial;
+  font-weight: bold;
+}
+
+.sub-submenu{
+  margin-left: 25px; /* Ajusta el espacio externo */
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+  .logout-button {
+    position:
+    bottom: 10px; /* Lo ubica cerca del borde inferior */
+    right: 10px; /* Separación del borde derecho */
+    z-index: 1000; /* Asegura que esté sobre otros elementos */
+    padding: 10px 20px; /* Espaciado interno */
+    background-color: #f44336; /* Color distintivo */
+    color: #fff; /* Texto blanco */
+    border: none; /* Sin bordes */
+    border-radius: 5px; /* Esquinas redondeadas */
+    cursor: pointer; /* Indica que es clickeable */
+  }
+
+
+}
+

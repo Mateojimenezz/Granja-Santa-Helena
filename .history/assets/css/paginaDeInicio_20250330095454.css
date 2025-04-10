@@ -1,0 +1,21 @@
+#sidebar {
+  display: none;
+  transition: all 0.3s ease; /* Animación opcional */
+}
+
+#sidebar.open {
+  display: block;
+}
+.btn-MenuLateralAbrir{
+  font-size: 30px;
+
+
+}
+
+.btn-MenuLateralCerrar{
+  margin-top: -20px;
+  margin-left: 190px;
+  font-size: 25px;
+
+}
+  

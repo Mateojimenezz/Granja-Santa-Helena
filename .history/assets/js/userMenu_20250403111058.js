@@ -1,0 +1,1 @@
+/* aqui se sincroniza el usuario en el menu laterar */

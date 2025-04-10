@@ -1,0 +1,167 @@
+@import "./variables.css";
+
+/* === General === */
+#sidebar {
+  display: none;
+  transition: all 0.3s ease; /* Animación opcional */
+  background-color: var(--color-menu-lateral);
+  width: 250px;
+}
+
+#sidebar.open {
+  display: block;
+}
+.btn-MenuLateralAbrir{
+  margin-top: -5px;
+  margin-left: -10px;
+  font-size: 30px;
+  font-weight: 700;
+  border:none;
+
+}
+
+.btn-MenuLateralCerrar{
+  margin-top: -240px;
+  margin-left: 190px;
+  font-size: 25px;
+  border:none;
+}
+.seccion-1 h1{
+    font-family: var(--font-principal);
+    color:  #FFBB00;
+    font-size: 3.5em;
+    font-weight: bold;
+    text-shadow: gray 1px 2px 5px;
+                
+}
+.seccion-2{
+  font-size: 1.3em;
+  font-family: Arial;
+}
+/* Submenú dentro del menú lateral */
+#sisidebarMenu .submenu {
+  margin-left: -10px; /* Ajustar margen */
+  list-style: none; /* Eliminar viñetas */
+}
+
+/* Ocultar los submenús en el encabezado */
+.nav-item .submenu {
+  display: none;
+}
+
+.nav-item.active .submenu {
+  display: block; /* Mostrar submenús al hacer clic en pantallas pequeñas */
+}
+
+/* Animación para mostrar el menú lateral */
+#sidebar {
+  transition: all 0.3s ease;
+  max-height: 100vh; /* Asegura que el contenido no exceda la pantalla */
+  overflow-y: scroll; /* Habilita el desplazamiento vertical */
+  scrollbar-width: thin; /* Reduce el grosor de la barra en Firefox */
+  scrollbar-color: transparent transparent; /* Hace la barra invisible en Firefox */
+}
+#sidebar::-webkit-scrollbar {
+  width: 0; /* Oculta la barra de desplazamiento en navegadores basados en WebKit */
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Asegura que el pulgar sea invisible */
+}
+/* Estilos para la sección de usuario */
+.user-info {
+  align-items: center;
+  padding: 10px;
+}
+
+.user-photo {
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  border: 2px solid grey;
+  border-radius: 50%; /* Hace que la imagen sea redonda */
+  margin-right: 10px;
+}
+
+.user-name {
+  font-size: 0.8em;
+  margin-top: 5px;
+  color: #333;
+}
+
+/* Estilos para el botón de cerrar sesión */
+.logout-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  background-color: var(  --color-Botones);
+  padding: 10px 35px;
+  border-radius: 30px;
+  color: black;
+  box-shadow: 0 4px 8px 1px  rgba(25, 157, 60, 0.6) /* Sombra verde */
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+  color: white;
+  
+}
+.nav-link {
+  color: white; /* Color predeterminado */
+  text-decoration: none;
+}
+
+.nav-link:active {
+  color: red im; /* Cuando está activo */
+}
+
+.nav-link:focus,
+.nav-link:visited {
+  color: white; /* Mantén el color consistente */
+
+  
+}
+#sidebar .submenu .nav-link {
+  font-family: arial;
+  font-size:0.9em;
+  color: red; /* Color personalizado para el submenú */
+}
+
+#sidebar .submenu .nav-link:active {
+  color: red; /* Color activo para los enlaces del submenú */
+}
+
+#sidebar .submenu .nav-link:focus,
+#sidebar .submenu .nav-link:visited {
+  color: var(--color-principal); /* Asegura que el color sea consistente */
+}
+ 
+
+
+
+
+
+
+
+
+@media (max-width: 991px) { /* Para pantallas menores a md */
+  #sidebar {
+    display: none !important; /* Oculta el menú lateral */
+  }
+ 
+
+  #toggleMenu, #closeMenu {
+    display: none !important; /* Oculta los botones asociados */
+
+  }
+  #sidebar.open {
+    display: block;
+  }
+  
+  
+
+}
+

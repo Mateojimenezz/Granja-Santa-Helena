@@ -1,0 +1,37 @@
+#sidebar {
+  display: none;
+  transition: all 0.3s ease; /* Animación opcional */
+}
+
+#sidebar.open {
+  display: block;
+}
+.btn-MenuLateralAbrir{
+  margin-top: -5px;
+  margin-left: -10px;
+  font-size: 30px;
+  font-weight: 700;
+  border:none;
+
+}
+
+.btn-MenuLateralCerrar{
+  margin-top: -20px;
+  margin-left: 190px;
+  font-size: 25px;
+  border:none;
+
+}
+/* Ocultar el menú lateral en pantallas pequeñas */
+@media (max-width: 991px) {
+  #sidebar {
+    display: none; /* Ocultar el menú por completo */
+  }
+}
+
+.btn-MenuLateralAbrir{
+  display:none;
+}
+.btn-MenuLateralCerrar{
+  display:none;
+}

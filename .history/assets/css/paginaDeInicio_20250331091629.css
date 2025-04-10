@@ -1,0 +1,35 @@
+#sidebar {
+  display: none;
+  transition: all 0.3s ease; /* Animación opcional */
+  background-color: var(--color-menu-lateral);
+  width: 250px;
+  height: 100vh;
+}
+
+#sidebar.open {
+  display: block;
+}
+.btn-MenuLateralAbrir{
+  margin-top: -5px;
+  margin-left: -10px;
+  font-size: 30px;
+  font-weight: 700;
+  border:none;
+
+}
+
+.btn-MenuLateralCerrar{
+  margin-top: -20px;
+  margin-left: 190px;
+  font-size: 25px;
+  border:none;
+
+}
+@media screen and (max-width: 991px) {
+
+  #sidebar.open {
+  display: block;
+}
+}
+
+
