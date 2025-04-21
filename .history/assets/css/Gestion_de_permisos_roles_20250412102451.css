@@ -1,0 +1,49 @@
+@import "./variables.css";
+body {
+  background-color: var(--color-FondoDiv2);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+ 
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px ;
+
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    background-color: var(--color-Botones);
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 10px;
+    background-color:var();
+  }
+  

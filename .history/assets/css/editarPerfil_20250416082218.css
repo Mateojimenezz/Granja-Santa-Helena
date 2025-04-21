@@ -1,0 +1,94 @@
+@import "./variables.css";
+body {
+    background-color: var(--color-FondoDiv2);
+    font-family: Arial;
+    color: var(--color-TextoMenuLateral);
+    transform: scale(0.9); /* Escalar el contenido al 90% */
+    transform-origin: top ; /* Mantener el contenido en la esquina superior izquierda */
+
+    padding: 0;
+  }
+  .profile-container {
+    background-color: var( --fondo-formularios);
+    max-width: 550px; /* Reduce el ancho máximo del contenedor */
+    min-height: 400px; /* Reduce la altura máxima del contenedor */
+    margin: 40px auto; /* Centra el contenedor horizontalmente */
+    padding: 10px 40px;
+    border-radius: 8px;
+    font-size: 0.7em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .profile-container h2{
+    font-family: var(--font-principal);
+    color: var(--color-TextoMenuLateral);
+    margin-top: 20px;
+    font-size: 1.5em;
+    
+  } 
+.profile-photo {
+  display: block;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+.update-button {
+    background-color: var(  --color-Botones);
+    padding: 10px 35px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 30px;
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 2px 4px 1px  rgba(25, 157, 60, 0.6) /* Sombra verde */
+  }
+  .update-button {
+    background-color: #f4cf50; /* Tonalidad más oscura */
+    color: black;
+  }
+  .update-button:active {
+    background-color:var(--color-principal)!important;
+    color: white !important;
+    box-shadow: none !important;
+  }
+.btn-editarFoto {
+    text-decoration: none;
+    color:var(  --color-TextoMenuLateral);
+
+  }
+  .btn-editarFoto:hover {
+    color:var(--color-principal); /* Cambia el color al pasar el mouse */
+    text-decoration: underline; /* Subraya el texto */
+  }
+  .form-control {
+    margin-bottom: 5px; /* Espaciado más reducido entre campos */
+    padding: 8px; /* Reduce el tamaño interno del input */
+    box-shadow: 0 0px 4px 0px  rgba(25, 157, 60, 0.6) /* Sombra verde */
+
+  }
+  .form-control:focus {
+    border-color: var(--color-principal); /* Cambia el color del borde al enfocar */
+    box-shadow: 0 0 4px var(--color-principal); /* Sombra verde al enfocar */
+  }
+  @media screen and (max-width: 991px) {
+    body {
+      transform: scale(0.9); /* Escalar el contenido al 90% en pantallas pequeñas */
+      margin-le: 0px; /* Elimina el margen en pantallas pequeñas */
+      padding: 0px; /* Elimina el padding en pantallas pequeñas */
+      overflow: hidden; /* Evita el scroll horizontal */
+   
+    }
+    .profile-container { 
+      width: 100vw; /* Ancho completo en pantallas pequeñas */
+      min-height: 90vh; /* Altura mínima del contenedor */
+      margin-top: 10px; /* Reduce el margen superior en pantallas pequeñas */
+      margin-bottom: 10px; /* Reduce el margen inferior en pantallas pequeñas */
+      padding: 20px; /* Reduce el padding en pantallas pequeñas */
+      overflow-y: hidden; /* Evita el scroll vertical en pantallas pequeñas */
+    
+    }
+    
+  }
+ 

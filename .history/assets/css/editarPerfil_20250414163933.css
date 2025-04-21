@@ -1,0 +1,36 @@
+
+.profile-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #363535;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.profile-photo {
+  display: block;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+.update-button {
+  background-color: #ffc107;
+  color: #000;
+  border: none;
+}
+.update-button:hover {
+  background-color: #e0a800;
+  color: #fff;
+}
+.btn-editar {
+    text-decoration: none;
+    padding: 10px 15px;
+    color:var(  --color-TextoMenuLateral);
+
+  }
+  .btn-agregar-usuario:hover {
+    color:var(--color-principal); /* Cambia el color al pasar el mouse */
+    text-decoration: underline; /* Subraya el texto */
+  }
