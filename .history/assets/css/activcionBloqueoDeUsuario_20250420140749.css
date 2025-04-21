@@ -1,0 +1,75 @@
+@import "./variables.css";
+body {
+    background-color: var(--color-FondoDiv2);
+      font-family: Arial;
+      margin-left: 17px;
+      padding: 0;
+    }
+    
+   
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 50px auto;
+  
+    }
+    
+    table, th, td {
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 8px 1px  rgba(120, 122, 120, 0.6) /* Sombra verde */
+  
+    }
+    
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    
+    th {
+      border-bottom: 1px solid var(--color-principal);
+      
+  
+    }
+    .link-accion {
+        text-decoration: none;
+        padding: 10px 15px;
+        color:var(  --color-TextoMenuLateral);
+    
+      }
+      .link-accion:hover {
+        color:var(--color-principal); /* Cambia el color al pasar el mouse */
+        text-decoration: underline; /* Subraya el texto */
+      }
+      .link-accion {
+        text-decoration: none; /* Quitar el subrayado predeterminado */
+        cursor: pointer; /* Cambiar el cursor al estilo de un link */
+        font-weight: bold; /* Resaltar un poco el texto */
+        margin-right: 10px; /* Espaciado entre enlaces */
+      }
+      
+      .link-rojo {
+        color: red; /* Color rojo para "Bloquear" */
+      }
+      
+      .link-verde {
+        color: green; /* Color verde para "Activar" */
+      }
+      
+     
+
+
+      @media (max-width: 768px) {
+        body{
+            margin-top: 20px;
+        }
+       
+        #userTable {
+          overflow-x: auto; /* Scroll horizontal en pantallas pequeñas */
+          display: block;
+        }
+      }
+    
+      /* Opcional para mejorar el diseño */
+        #userTable {
+        width: 100%; /* Ocupa todo el ancho del contenedor */
+      }

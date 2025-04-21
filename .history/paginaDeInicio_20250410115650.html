@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Granja</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/paginaDeInicio.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+
+  </head>
+<body>
+  <header class="header sticky-top d-flex  align-items-center ">
+    <div class="container d-flex  align-items-center justify-content-between ">
+      <div class="logo">
+        <img  src="./assets/img/logo.png" width="90" alt="Logo">
+        <span>La Granja <br> Santa Helena</span>
+      </div>
+      <nav class="navbar navbar-expand-lg ">
+        <button class="navbar-toggler toggler-focus text-white" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse  d-lg-none" id="menu">
+          <ul class="navbar-nav ms-auto    gap-md-3 gap-lg-5">
+            <li class="nav-item"><a class="nav-link " href="#" > <i class="icon-left bi bi-people d-lg-none "></i>Usuarios</a>
+              <ul class="submenu submenu-hidden">
+                <li><a class="nav-link" href="#">Gestión de Roles y Permisos</a>
+                  <ul class="sub-submenu sub-submenu-hidden">
+                    <li><a class="nav-link" href="./Gestion_de_permisos_roles.html">Usuarios</a></li>
+
+                  </ul>
+                </li>
+                <li><a class="nav-link" href="#">Registro de Actividades</a></li>
+                <li><a class="nav-link" href="#">Editar Perfil</a></li>
+                <li><a class="nav-link" href="#">Activación/Bloqueo de Usuario</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#"> <i class="icon-left bi bi-box-seam d-lg-none"></i> Inventarios</a>
+              <ul class="submenu submenu-hidden">
+                <li><a class="nav-link" href="#">Bodega de Alimento</a>
+                  <ul class="sub-submenu sub-submenu-hidden">
+                    <li><a class="nav-link" href="#">Inventario de alimento</a></li>
+                    <li><a class="nav-link" href="#">Registro de Diario de consumo</a></li>
+                  </ul>
+                </li>
+                <li><a class="nav-link" href="#">Bodega de Enseres</a></li>
+                <li><a class="nav-link" href="#">Dispensario</a>
+                  <ul class="sub-submenu sub-submenu-hidden">
+                    <li><a class="nav-link" href="#">Registro de Medicamentos</a></li>
+                  </ul>
+                </li>
+                <li><a class="nav-link" href="#">Laboratorio</a>
+                  <ul class="sub-submenu sub-submenu-hidden">
+                    <li><a class="nav-link" href="#">Registro de Semen</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#"> <i class="icon-left bi bi-pencil-square d-lg-none"></i>Registro de Produción</a>
+              <ul class="submenu submenu-hidden">
+                <li><a class="nav-link" href="#">Maternidad</a>
+                  <ul class="sub-submenu sub-submenu-hidden">
+                    <li><a class="nav-link" href="#">Registro de Hembras Preñadas</a></li>
+                    <li><a class="nav-link" href="#">Seguimiento de Gestacion</a></li>
+                    <li><a class="nav-link" href="#">Registro de Parto</a></li>
+                    <li><a class="nav-link" href="#">Manejo de Parideras</a></li>
+                  </ul>
+                </li>
+                <li><a class="nav-link" href="#">Lactancia</a>
+                  <ul class="sub-submenu sub-submenu-hidden">
+                    <li><a class="nav-link" href="#">Control de lechones Lactante</a></li>
+                    <li><a class="nav-link" href="#">Seguimiento de Salud y Crecimiento</a></li>
+                    <li><a class="nav-link" href="#">Consumo de Leche Materna</a></li>
+                  </ul>
+                </li>
+                <li><a class="nav-link" href="#">Reproductores</a>
+                  <ul class="sub-submenu sub-submenu-hidden">
+                    <li><a class="nav-link" href="#">Registro de  Machos y Hembras</a></li>
+                    <li><a class="nav-link" href="#">Registrar nuevo Reproductor</a></li>
+                    <li><a class="nav-link" href="#">Control de Servicios</a></li>
+                    <li><a class="nav-link" href="#">Seg de resultado de Inseminacion</a></li>
+                  </ul>
+                </li>
+                <li><a class="nav-link" href="#">Precebo</a>
+                  <ul class="sub-submenu sub-submenu-hidden">
+                    <li><a class="nav-link" href="#">Monitoreo de Lechones</a></li>
+                  </ul>
+                </li>
+                <li><a class="nav-link" href="#">Ceba</a>
+                  <ul class="sub-submenu sub-submenu-hidden">
+                    <li><a class="nav-link" href="#">Monitoreo de Lechones</a></li>
+
+                  </ul>
+                </li>
+              </ul>
+
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#"> <i class="icon-left bi bi-heart-pulse d-lg-none"></i> Salud Animal</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">  <i class="icon-left bi bi-cash d-lg-none"></i>Ventas</a></li>
+          </ul> 
+          <button id="logoutButton" class="logout-button d-block d-md-none d-lg-none">Cerrar Sesión</button>         
+        </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <button id="toggleMenu" class="d-none d-sm-none d-md-block  btn  position-fixed  btn-MenuLateralAbrir ">
+    <span><i class="bi bi-arrow-bar-right"></i></span>
+  </button>
+  <!-- Menú lateral -->
+  <div id="sidebar" class=" border-end vh-100 position-fixed start-0 p-3  ">
+     <!-- Sección de Usuario -->
+  <div id="userInfo" class="user-info d-flex flex-column">
+    <img src="" alt="Foto de Usuario" class="user-photo"><!-- foto del usuario -->
+    <p class="user-name ">Nombre del Usuario</p>
+  </div>
+    <button id="closeMenu" class="btn  mb-1 btn-MenuLateralCerrar">
+      <span><i class="bi bi-arrow-bar-left"></i></span>
+    </button>
+    <ul id="sisidebarMenu"  class="nav flex-column" >
+    
+    </ul>
+     <!-- Botón de Cerrar Sesión -->
+  <button id="logoutButton" class="logout-button ">Cerrar Sesión</button>
+  </div>
+  <main class="container">
+    <iframe id="iframe-content" src="/Gestion_de_permisos_roles.html" frameborder="0"></iframe>
+  </main>
+  </main>
+  
+  
+
+    
+    
+
+
+  <!-- bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="./assets/js/menu.js"></script>
+  <script src="./assets/js/menuLateral.js"></script>
+  <script src="./assets/js/submenu.js"></script>
+  <script src="./assets/js/menuHandler.js"></script>
+  <script src="./assets/js/iframe.js"></script>
+  
+</body>
+
+</html>

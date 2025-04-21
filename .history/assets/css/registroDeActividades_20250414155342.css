@@ -1,0 +1,21 @@
+ /* Ajustes para la tabla */
+ body{
+  
+ }
+ #activityTable {
+    max-height: 400px; /* Limitar la altura de la tabla */
+    overflow-y: auto; /* Habilitar scroll vertical si es necesario */
+  }
+
+
+  /* Mensaje cuando no hay resultados */
+  .no-results {
+    text-align: center;
+    font-size: 1.2rem;
+    color: red;
+    display: none; /* Ocultar inicialmente */
+  }
+  .input{
+    box-shadow: 0 4px 8px 1px  rgba(25, 157, 60, 0.6) /* Sombra verde */
+
+  }

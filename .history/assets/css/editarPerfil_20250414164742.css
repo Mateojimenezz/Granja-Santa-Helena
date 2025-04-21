@@ -1,0 +1,51 @@
+@import "./variables.css";
+body {
+  background-color: var(--color-FondoDiv2);
+    font-family: Arial;
+    margin-left: 17px;
+    padding: 0;
+  }
+  .profile-container {
+    max-width: 500px; /* Reduce el ancho máximo del contenedor */
+    height: auto;
+    margin: 20px auto; /* Centra el contenedor horizontalmente */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+.profile-photo {
+  display: block;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+.update-button {
+    background-color: var(  --color-Botones);
+    padding: 10px 35px;
+    border-radius: 30px;
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 4px 8px 1px  rgba(25, 157, 60, 0.6) /* Sombra verde */
+  }
+  .btn:hover {
+    background-color: #f4cf50; /* Tonalidad más oscura */
+    color: black;
+  }
+  .btn:active {
+    background-color:var(--color-principal)!important;
+    color: white !important;
+    box-shadow: none !important;
+  }
+.btn-editarFoto {
+    text-decoration: none;
+    padding: 10px 15px;
+    color:var(  --color-TextoMenuLateral);
+
+  }
+  .btn-editarFoto:hover {
+    color:var(--color-principal); /* Cambia el color al pasar el mouse */
+    text-decoration: underline; /* Subraya el texto */
+  }
