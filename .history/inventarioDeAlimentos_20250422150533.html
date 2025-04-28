@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de Alimentos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+     <link rel="stylesheet" href="./assets/css/tablas.css"> <!-- Enlace a tu CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+  </head>
+<body>
+    <main>
+        <table class="table table-striped  mt-3 " id="userTable">
+          <thead class="table">
+            <tr>
+              <th>Seleccionar</th> <!-- Nueva columna -->
+              <th>Categoria</th>
+              <th>Tipo de Alimentos</th>
+              <th>Cantidad</th>
+              <th>Fecha de Entrada</th>
+              <th>Proveedor</th>
+              <th>Lote</th>
+              <th>Fecha de Vencimiento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type="checkbox" class="form-check-input" />
+              </td>
+              <td>
+                <input type="text" class="input-no-border" placeholder="Juan Pérez" />
+              </td>
+              <td>
+                <input type="text" class="input-no-border" placeholder="12345678" />
+              </td>
+              <td>
+                <input type="email" class="input-no-border" placeholder="juan.perez@mail.com" />
+              </td>
+              <td>
+                <input type="tel" class="input-no-border" placeholder="555-1234" />
+              </td>
+              <td>
+                <!-- Selector proveedores -->
+                <select class="form-select">
+                  <option selected disabled>Seleccionar</option> <!-- Opción predeterminada -->
+                  <option value="Proveedor 1">Proveedor 1</option>
+                  <option value="Proveedor 2">Proveedor 2</option>
+                  <option value="Proveedor 3">Proveedor 3</option>
+                </select>
+              </td>
+              <td>
+                <!-- Selector de Lote -->
+                <select class="form-select">
+                  <option selected disabled>Asignar Permiso</option> <!-- Opción predeterminada -->
+                  <option value="Lote 1">lote 1</option>
+                  <option value="Lote 2">Lote 2</option>
+                  <option value="Lote 3">Lote 3</option>
+                </select>
+              </td>
+            </tr>
+            <!-- Más filas aquí -->
+          </tbody>
+        </table>
+        <a id="addUserButton" class=" btn-agregar-usuario mt-3">Agregar Fila</a>
+        <a id="deleteUserButton" class=" btn-agregar-usuario mt-3">Eliminar Fila</a>
+      </main>
+      
+      <footer class="d-flex justify-content-center align-items-center  text-white gap-4">
+        <button class="btn ">Guardar</button>
+        <button id="printButton" class="btn ">Imprimir</button>
+      </footer>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <script src="/assets/js//btnAgregarUsuario.js"></script> <!--  agregar y eliminar filas en la tabla-->
+      <script src="/assets/js/"></script> <!-- imprimir tabla -->    
+    
+</body>
+
+</html>

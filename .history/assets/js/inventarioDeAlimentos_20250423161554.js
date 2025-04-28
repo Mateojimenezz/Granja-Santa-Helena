@@ -1,0 +1,122 @@
+ // Función para añadir una nueva fila a la tabla
+ const addUserButton = document.getElementById('addUserButton');
+ const userTableBody = document.querySelector('#userTable tbody');
+ 
+
+ addUserButton.addEventListener('click', function () {
+   const newRow = document.createElement('tr');
+
+   newRow.innerHTML = `
+     <td>
+       <input type="checkbox" class="form-check-input" />
+     </td>
+     <td>
+        <select class="form-select">
+            <option selected disabled>Seleccionar</option> <!-- Opción predeterminada -->
+            <option value="Energeticos">Alimentos Energéticos</option>
+            <option value="Proteicos">Alimentos Proteicos</option>
+            <option value="Fibrosos">Alimentos Fibrosos</option>
+            <option value="Minerales">Alimentos Minerales</option>
+            <option value="Vitaminas">Vitaminas</option>
+        </select>
+     </td>
+     <td>
+       <select class="form-select">
+            <option selected disabled>Seleccionar</option> <!-- Opción predeterminada -->
+            <option value="Granos y Cereales">Granos y Cereales</option>
+            <option value="Subproductos Industriales">Subproductos Industriales</option>
+            <option value="Harinas de Origen Animal">Harinas de Origen Animal</option>
+            <option value="Harinas de Origen Vegetal">Harinas de Origen Vegetal</option>
+            <option value="Forrajes y Pastos">Forrajes y Pastos</option>
+            <option value="Subproductos Agrícolas">Subproductos Agrícolas</option>
+            <option value="Suplementos Minerales">Suplementos Minerales</option>
+            <option value="Premezclas Vitamínicas">Premezclas Vitamínicas</option>
+        </select>
+     </td>
+     <td>
+       <input type="text" class="form-control" placeholder="Cantidad (kg)">
+     </td>
+     <td>
+        <input type="date" class="input-no-border" placeholder="555-1234" />
+     </td>
+     <td>
+        <select class="form-select">
+            <option selected disabled>Seleccionar</option> <!-- Opción predeterminada -->
+            <option value="Proveedor 1">Proveedor 1</option>
+            <option value="Proveedor 2">Proveedor 2</option>
+            <option value="Proveedor 3">Proveedor 3</option>
+        </select>
+    </td>
+    <td>
+         <select class="form-select">
+            <option selected disabled>Seleccionar</option> <!-- Opción predeterminada -->
+            <option value="Lote 1">lote 1</option>
+            <option value="Lote 2">Lote 2</option>
+            <option value="Lote 3">Lote 3</option>
+        </select>
+    </td>
+     <td>
+        <input type="date" class="input-no-border" placeholder="555-1234" />
+      </td>
+
+   `;
+
+   userTableBody.appendChild(newRow);
+ });
+ // Función para eliminar la fila seleccionada o la última fila si no hay ninguna seleccionada
+ deleteUserButton.addEventListener('click', function () {
+    // Buscar filas seleccionadas
+    const selectedRows = Array.from(document.querySelectorAll('#userTable tbody tr')).filter(row => {
+      const checkbox = row.querySelector('.form-check-input');
+      return checkbox && checkbox.checked;
+    });
+
+    if (selectedRows.length > 0) {
+      // Eliminar las filas seleccionadas
+      selectedRows.forEach(row => row.remove());
+    } else {
+      // Si no hay filas seleccionadas, eliminar la última fila
+      const rows = document.querySelectorAll('#userTable tbody tr');
+      if (rows.length > 0) {
+        rows[rows.length - 1].remove();
+      }
+    }
+  });
+ 
+  printButton.addEventListener('click', function () {
+    // Crear un nuevo documento PDF
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Obtener los datos de la tabla
+    const table = document.getElementById('userTable');
+    doc.autoTable({
+      head: [['seleccionar','Categoria', 'Tipo de Alimentos', 'Cantidad', 'Fecha de Entrega', 'Proveedor', 'Lote','Fecha de Vencimiento']], // Encabezados
+      body: Array.from(table.querySelectorAll('tbody tr')).map(row => {
+        return Array.from(row.cells).map(cell => {
+          const input = cell.querySelector('input, select');
+          return input ? input.value || input.options[input.selectedIndex]?.text : cell.textContent.trim();
+        });
+      }),
+    });
+
+    // Guardar como archivo PDF
+    doc.save('Inventario_de_alimentos.pdf'); // Nombre del archivo
+  });
+  document.addEventListener('change', function (event) {
+    const target = event.target;
+  
+    // Verificar si el elemento es un checkbox
+    if (target.classList.contains('form-check-input')) {
+      const row = target.closest('tr'); // Obtener la fila correspondiente
+      const seleccionarCell = row.children[0]; // Columna "Seleccionar"
+  
+      // Cambiar el texto a "ON" o "OFF" según el estado del checkbox
+      if (target.checked) {
+        seleccionarCell.textContent = 'OFF';
+      } else {
+        seleccionarCell.textContent = 'ON';
+      }
+    }
+  });
+  
