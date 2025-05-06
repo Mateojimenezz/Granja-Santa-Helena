@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro De Medicamentos.</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+     <link rel="stylesheet" href="./assets/css/tablas.css"> <!-- Enlace a tu CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+  </head>
+<body>
+  <header class="header m-5 sticky-top d-flex justify-content-center align-items-center gap-2">
+    <!-- Input para búsqueda -->
+    <input type="text" id="busqueda" class="form-control input-control busqueda-tabla" placeholder="Buscar en la tabla">
+    
+    <!-- Botón con ícono de búsqueda -->
+    <button id="boton-buscar" class=" btn-buscar ">
+      <i class="bi bi-search"></i> <!-- Ícono de Bootstrap para búsqueda -->
+    </button>
+  </header>
+    <main>
+        <table class="table table-striped  mt-3 " id="userTable">
+          <thead class="table">
+            <tr>
+              <th>Seleccionar</th> <!-- Nueva columna -->
+              <th>ID-Verraco</th>
+              <th>Fecha de Recoleccion</th>
+              <th>Cantidad</th>
+              <th>Calidad-Semen</th>
+              <th>Fecha-Caducidad</th>
+              <th>Fecha Salida</th>
+              <th>Responsable</th>
+              <th>Solicitante</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type="checkbox" class="form-check-input input-control" />
+              </td>
+              <td>
+                <input type="text" name="nombre" id="nombre" class="input-no-border" placeholder="Codigo-Verraco" />
+                </td>
+              <td>
+                <input type="date" name="fecha-recoleccion" id="fecha-recoleccion" class="input-no-border fecha-recoleccion" placeholder="Fecha de Recolección">
+              </td>
+              <td>
+                <input type="text" name="cantidad" id="cantidad" class="input-no-border" placeholder="Cantidad" />
+              </td>
+              <td>
+                <input type="text" name="calidad-semen" id="calidad-semen" class="input-no-border" placeholder="Calidad-Semen " />
+              </td>
+              <td>
+                <input type="date" class="input-no-border fecha-caducidad" placeholder="Fecha de caducidad">
+              </td>
+                <td>
+                    <input type="date" class="input-no-border fecha-salida" placeholder="Fecha de salida">
+              <td>
+                    <input type="text" class="input-no-border" placeholder="Responsable" />
+              </td>
+              <td>
+                    <input type="text" class="input-no-border" placeholder="Solicitante" />
+              </td>
+              <td>
+                <span class="estado-semen"></span> <!-- Cambia el texto según el estado -->
+              </td>
+            </tr>
+            <!-- Más filas aquí -->
+          </tbody>
+        </table>
+        <a id="addUserButton" class=" btn-agregar-usuario mt-3">Agregar Fila</a>
+        <a id="deleteUserButton" class=" btn-agregar-usuario mt-3">Eliminar Fila</a>
+        <a id="exportExcelButton"  class=" btn-agregar-usuario mt-3">Exportar Excel</a>
+      </main>
+      
+      <footer class="d-flex justify-content-center align-items-center  text-white gap-4">
+        <button class="btn ">Guardar</button>
+        <button id="printButton" class="btn ">Imprimir</button>
+      </footer>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+      <script src="/assets/js/registroDeSemen.js"></script> <!--  agregar y eliminar filas en la tabla-->
+         
+    
+</body>
+
+</html>

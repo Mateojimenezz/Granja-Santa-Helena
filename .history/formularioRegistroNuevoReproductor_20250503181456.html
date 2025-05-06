@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Manejo de Parideras</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/formularioGestionProduccion.css">
+ 
+</head>
+<body>
+    <div class="form-container my-5">
+        <h3 class="text-center mb-4">Manejo de Paridera</h3>
+        <form id="parideraForm">
+          <!-- Primera fila: Fecha, ID, Peso y Jaula -->
+          <div class="row mb-3">
+            <div class="col-md-3">
+              <label for="fechaIngreso" class="form-label">Fecha de Ingreso</label>
+              <input type="date" class="form-control" id="fechaIngreso" name="fechaIngreso" required>
+            </div>
+            <div class="col-md-3">
+              <label for="idCerda" class="form-label">ID</label>
+              <input type="text" class="form-control" id="idCerda" name="idCerda" required>
+            </div>
+            <div class="col-md-3">
+              <label for="pesoCerda" class="form-label">Peso</label>
+              <input type="text" class="form-control" id="pesoCerda" name="pesoCerda" required>
+            </div>
+            <div class="col-md-3">
+              <label for="jaulaCerda" class="form-label">Jaula N°</label>
+              <input type="text" class="form-control" id="jaulaCerda" name="jaulaCerda" required>
+            </div>
+          </div>
+      
+          <!-- Segunda fila: Horario de Alimentación -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label for="horarioAlimentacion" class="form-label">Horario de Alimentación</label>
+              <textarea class="form-control" id="horarioAlimentacion" name="horarioAlimentacion" rows="2" required></textarea>
+            </div>
+          </div>
+      
+          <!-- Tercera fila: Condiciones Ambientales -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label for="condicionesAmbientales" class="form-label">Condiciones Ambientales (Temperatura, Humedad)</label>
+              <textarea class="form-control" id="condicionesAmbientales" name="condicionesAmbientales" rows="2" required></textarea>
+            </div>
+          </div>
+      
+          <!-- Cuarta fila: Registro de Limpieza y Desinfección -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label for="registroLimpieza" class="form-label">Registro de Limpieza y Desinfección</label>
+              <textarea class="form-control" id="registroLimpieza" name="registroLimpieza" rows="2" required></textarea>
+            </div>
+          </div>
+      
+          <!-- Quinta fila: Observaciones sobre la salud -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label for="observaciones" class="form-label">Observaciones sobre el comportamiento y salud de la hembra</label>
+              <textarea class="form-control" id="observaciones" name="observaciones" rows="2"></textarea>
+            </div>
+          </div>
+      
+          <!-- Botones -->
+          <div class="text-center">
+            <button type="button" class="btn btn-form me-2" onclick="imprimirFormularioParidera()">Imprimir</button>
+            <button type="submit" class="btn btn-form">Guardar</button>
+          </div>
+        </form>
+      
+        <!-- Sección para vista de impresión -->
+        <div id="printableParidera" style="display: none;">
+          <h2 class="text-center">Manejo de Paridera</h2>
+          <br>
+          <p><strong>Fecha de Ingreso:</strong> <span id="printFechaIngreso"></span></p>
+          <p><strong>ID:</strong> <span id="printIdCerda"></span></p>
+          <p><strong>Peso:</strong> <span id="printPesoCerda"></span></p>
+          <p><strong>Jaula N°:</strong> <span id="printJaulaCerda"></span></p>
+          <p><strong>Horario de Alimentación:</strong> <span id="printHorarioAlimentacion"></span></p>
+          <p><strong>Condiciones Ambientales:</strong> <span id="printCondicionesAmbientales"></span></p>
+          <p><strong>Registro de Limpieza y Desinfección:</strong> <span id="printRegistroLimpieza"></span></p>
+          <p><strong>Observaciones:</strong> <span id="printObservaciones"></span></p>
+        </div>
+      </div>
+      
+    
+      
+      
+      
+      
+
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/formularioRegistroNuevoReproductor.js"></script>
+  
+ 
+</body>
+</html>
