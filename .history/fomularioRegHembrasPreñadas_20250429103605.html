@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Registro de Cerdas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/fomularioRegHembrasPreñadas.css">
+</head>
+<body>
+    <div class="form-container">
+        <h3 class="text-center mb-4">Registro de Cerdas Preñadas</h3>
+        <form id="cerdaForm">
+          <!-- Campos principales: ID, Peso y Jaula -->
+          <div class="row mb-3 ">
+            <div class=" col-md-3 DivphotoCerda text-center mb-4">
+                <!-- Imagen de la cerda -->
+                <img id="cerdaPhoto" src="./assets/img/default-photo.jpg" alt="Foto de la Cerda" class="img-thumbnail" >
+                <!-- Botón para editar foto -->
+                <a class="btn btn-cerdaPhoto mt-1" onclick="document.getElementById('photoInput').click()">Editar Foto</a>
+                <!-- Input oculto para subir la foto -->
+                <input type="file" id="photoInput" style="display: none;" accept="image/*" onchange="updatePhoto(event)">
+              </div>
+            <div class="col-md-2 input-group1 mb-3">
+              <label for="idCerda" class="form-label">ID-Cerda</label>
+              <input type="text" class="form-control" id="idCerda" name="idCerda" required>
+            </div>
+            <div class="col-md-2 input-group1">
+              <label for="pesoCerda" class="form-label">Peso</label>
+              <input type="text" class="form-control" id="pesoCerda" name="pesoCerda" required>
+            </div>
+            <div class="col-md-2 input-group1">
+              <label for="jaulaCerda" class="form-label">Jaula N°</label>
+              <input type="text" class="form-control" id="jaulaCerda" name="jaulaCerda" required>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <!-- Fecha de Inseminación -->
+            <div class="col-md-6">
+              <label for="fechaInseminacion" class="form-label">Fecha de Inseminación</label>
+              <input type="date" class="form-control" id="fechaInseminacion" name="fechaInseminacion" placeholder="DD/MM/AAAA" required>
+            </div>
+          
+            <!-- Identificación del Macho -->
+            <div class="col-md-6">
+              <label for="idMacho" class="form-label">Identificación del Macho</label>
+              <input type="text" class="form-control" id="idMacho" name="idMacho" required>
+            </div>
+            </div>
+            <div class="row mb-4">
+                <!-- Fecha Probable de Parto -->
+                <div class="col-md-3">
+                <label for="fechaParto" class="form-label">Fecha Probable de Parto</label>
+                <input type="date" class="form-control" id="fechaParto" name="fechaParto" placeholder="DD/MM/AAAA" required>
+            </div>
+
+            <!-- Método de Inseminación -->
+            <div class="col-md-3">
+    <label for="metodoInseminacion" class="form-label">Método de Inseminación</label>
+    <input type="text" class="form-control" id="metodoInseminacion" name="metodoInseminacion" required>
+  </div>
+
+
+            </div>
+
+      
+          <!-- Botones de imprimir y guardar -->
+          <div class="button-group text-center">
+            <button type="button" class="btn btn-primary btn-print me-2" onclick="imprimirFormulario()">Imprimir</button>
+            <button type="submit" class="btn btn-success btn-save">Guardar</button>
+          </div>
+        </form>
+      </div>
+      
+
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/fomularioRegHembrasPreñadas.js"></script>
+ 
+</body>
+</html>

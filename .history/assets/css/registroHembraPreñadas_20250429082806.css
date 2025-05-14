@@ -1,0 +1,23 @@
+.card-img-top {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  .add-button {
+    position: fixed;
+    top: 20px; /* Parte superior */
+    right: 20px; /* A la derecha */
+  
+    color: #28a745; /* Color del ícono */
+    border: none; /* Sin bordes */
+    border-radius: 50%;
+    width: auto; /* Tamaño del contenido */
+    height: auto;
+    font-size: 28px; /* Tamaño del ícono */
+    z-index: 1000; /* Siempre visible */
+    cursor: pointer; /* Manito al pasar */
+    padding: 10px;
+  }
+  .add-button:hover {
+    color: #218838; /* Cambiar color en hover */
+  }

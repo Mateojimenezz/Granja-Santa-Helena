@@ -1,0 +1,40 @@
+@import "./variables.css";
+body {
+    background-color: var(--color-FondoDiv2);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+h1{
+    font-family: var(--font-principal);
+    color:  #FFBB00;
+    font-weight: bold;
+    text-shadow: gray 1px 2px 5px;
+    margin-top: 50px;
+}
+.container {
+    max-height: 100vh; /* Limitar la altura de la pantalla */
+    max-width: 50vw; /* Limitar el ancho de la pantalla */
+    overflow: hidden;
+  }
+
+  .card-img-top {
+    max-height: 30vh; /* Cada imagen ocupa menos de la mitad de la pantalla */
+    object-fit: cover; /* Ajustar el contenido sin deformar la imagen */
+    
+  }
+
+  .card {
+    background-color: var(--font-principal);
+    margin-bottom: 20px;
+  }
+  .card-body{
+    background-color: var(--color-principal);
+    color: white;
+    font-family: Arial;
+    text-align: center;
+    font-size: 20px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 8px;
+
+  }

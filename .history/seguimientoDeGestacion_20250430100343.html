@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seguimiento de Gestacion</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/formularioGestionProduccion.css">
+</head>
+<body>
+    <div class="form-container my-5">
+        <h3 class="text-center mb-4">Seguimiento de Gestación</h3>
+        <form id="gestacionForm">
+          <!-- Primera fila: Fecha, ID, Peso y Jaula -->
+          <div class="row mb-3">
+            <div class="col-md-3">
+              <label for="fechaControl" class="form-label">Fecha del Control</label>
+              <input type="date" class="form-control" id="fechaControl" name="fechaControl" required>
+            </div>
+            <div class="col-md-3">
+              <label for="idCerda" class="form-label">ID</label>
+              <input type="text" class="form-control" id="idCerda" name="idCerda" required>
+            </div>
+            <div class="col-md-3">
+              <label for="pesoCerda" class="form-label">Peso</label>
+              <input type="text" class="form-control" id="pesoCerda" name="pesoCerda" required>
+            </div>
+            <div class="col-md-3">
+              <label for="jaulaCerda" class="form-label">Jaula N°</label>
+              <input type="text" class="form-control" id="jaulaCerda" name="jaulaCerda" required>
+            </div>
+          </div>
+      
+          <!-- Segunda fila: Observaciones y resultados -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label for="resultadoExamen" class="form-label">Resultado del Examen General</label>
+              <textarea class="form-control" id="resultadoExamen" name="resultadoExamen" rows="3" placeholder="Signos vitales, comportamiento..." required></textarea>
+            </div>
+          </div>
+      
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label for="evaluacionNutricional" class="form-label">Evaluación Nutricional y Ajustes en la Dieta</label>
+              <textarea class="form-control" id="evaluacionNutricional" name="evaluacionNutricional" rows="3" placeholder="Describe los ajustes realizados..." required></textarea>
+            </div>
+          </div>
+      
+          <!-- Tercera fila: Ultrasonido y Tratamientos -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="resultadoUltrasonido" class="form-label">Resultado Ultrasonido</label>
+              <textarea class="form-control" id="resultadoUltrasonido" name="resultadoUltrasonido" rows="2" placeholder="Especifica si se realizó..." required></textarea>
+            </div>
+            <div class="col-md-6">
+              <label for="registroTratamientos" class="form-label">Registro de Tratamientos Administrados</label>
+              <textarea class="form-control" id="registroTratamientos" name="registroTratamientos" rows="2" placeholder="Especifica los tratamientos aplicados..." required></textarea>
+            </div>
+          </div>
+      
+          <!-- Cuarta fila: Salud Reproductiva y Condiciones Ambientales -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="monitoreoSaludReproductiva" class="form-label">Monitoreo de la Salud Reproductiva</label>
+              <textarea class="form-control" id="monitoreoSaludReproductiva" name="monitoreoSaludReproductiva" rows="2" placeholder="Notas sobre la salud reproductiva..." required></textarea>
+            </div>
+            <div class="col-md-6">
+              <label for="condicionesAmbientales" class="form-label">Condiciones Ambientales</label>
+              <textarea class="form-control" id="condicionesAmbientales" name="condicionesAmbientales" rows="2" placeholder="Especifica si se evaluaron..." required></textarea>
+            </div>
+          </div>
+      
+          <!-- Quinta fila: Observaciones -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label for="observaciones" class="form-label">Observaciones</label>
+              <textarea class="form-control" id="observaciones" name="observaciones" rows="3" placeholder="Escribe cualquier observación adicional..." required></textarea>
+            </div>
+          </div>
+      
+          <!-- Botones de imprimir y guardar -->
+          <div class="button-group text-center ">
+            <button type="button" class="btn  btn-form " onclick="()">Imprimir</button>
+            <button type="submit" class="btn  btn-form">Guardar</button>
+          </div>
+        </form>
+      </div>
+      <div id="printableGestacion" style="display: none;">
+        <h2 class="text-center">Seguimiento de Gestación</h2>
+        br
+        <p><strong>Fecha del Control:</strong> <span id="printFechaControl"></span></p>
+        <p><strong>ID:</strong> <span id="printIdCerda"></span></p>
+        <p><strong>Peso:</strong> <span id="printPesoCerda"></span></p>
+        <p><strong>Jaula N°:</strong> <span id="printJaulaCerda"></span></p>
+        <p><strong>Resultado del Examen General:</strong> <span id="printResultadoExamen"></span></p>
+        <p><strong>Evaluación Nutricional y Ajustes:</strong> <span id="printEvaluacionNutricional"></span></p>
+        <p><strong>Resultado Ultrasonido:</strong> <span id="printResultadoUltrasonido"></span></p>
+        <p><strong>Registro de Tratamientos:</strong> <span id="printRegistroTratamientos"></span></p>
+        <p><strong>Monitoreo de Salud Reproductiva:</strong> <span id="printMonitoreoSaludReproductiva"></span></p>
+        <p><strong>Condiciones Ambientales:</strong> <span id="printCondicionesAmbientales"></span></p>
+        <p><strong>Observaciones:</strong> <span id="printObservaciones"></span></p>
+      </div>
+      
+      
+      
+      
+
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ 
+ 
+</body>
+</html>

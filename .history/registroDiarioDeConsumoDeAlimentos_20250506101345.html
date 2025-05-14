@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro De Consumo Diario de Alimentos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+     <link rel="stylesheet" href="./assets/css/tablas.css"> <!-- Enlace a tu CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+  </head>
+<body>
+  <header class="header m-5 sticky-top d-flex justify-content-center align-items-center gap-2">
+    <!-- Input para búsqueda -->
+    <input type="text" id="busqueda" class="form-control input-control busqueda-tabla" placeholder="Buscar en la tabla">
+    
+    <!-- Botón con ícono de búsqueda -->
+    <button id="boton-buscar" class=" btn-buscar ">
+      <i class="bi bi-search"></i> <!-- Ícono de Bootstrap para búsqueda -->
+    </button>
+  </header>
+    <main>
+        <table class="table table-striped  mt-3 " id="userTable">
+          <thead class="table">
+            <tr>
+              <th>Seleccionar</th> <!-- Nueva columna -->
+              <th>Fecha</th>
+              <th>Lote</th>
+              <th>Categoria</th>
+              <th>Tipo De Alimentos</th>
+              <th>Cantidad de Salida</th>
+              <th>Destino</th>
+              <th>Responsable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type="checkbox" name="seleccionar" class="form-check-input" />
+              </td>
+              <td>
+                <input type="date" name="fecha-entrada" id="fecha-entrada" class="input-no-border" placeholder="555-1234" />
+                
+              </td>
+              <td>
+                <!-- Selector de Lote -->
+                <select name="lote" id="lote" class="form-select">
+                  <option selected disabled>Seleccionar</option> <!-- Opción predeterminada -->
+                  <option value="Lote 1">lote 1</option>
+                  <option value="Lote 2">Lote 2</option>
+                  <option value="Lote 3">Lote 3</option>
+                </select>
+              </td>
+              <td>
+                <!-- Selector de Categorías -->
+                <select name="categoria" id="categoria" class="form-select">
+                  <option selected disabled>Seleccionar</option> <!-- Opción predeterminada -->
+                  <option value="Energeticos">Alimentos Energéticos</option>
+                  <option value="Proteicos">Alimentos Proteicos</option>
+                  <option value="Fibrosos">Alimentos Fibrosos</option>
+                  <option value="Minerales">Alimentos Minerales</option>
+                  <option value="Vitaminas">Vitaminas</option>
+                </select>
+              </td>
+              <td>
+                <!-- Selector de Tipos de Alimentos -->
+                <select name="tipo" id="tipo" class="form-select">
+                  <option selected disabled>Seleccionar</option> <!-- Opción predeterminada -->
+                  <option value="Granos y Cereales">Granos y Cereales</option>
+                  <option value="Subproductos Industriales">Subproductos Industriales</option>
+                  <option value="Harinas de Origen Animal">Harinas de Origen Animal</option>
+                  <option value="Harinas de Origen Vegetal">Harinas de Origen Vegetal</option>
+                  <option value="Forrajes y Pastos">Forrajes y Pastos</option>
+                  <option value="Subproductos Agrícolas">Subproductos Agrícolas</option>
+                  <option value="Suplementos Minerales">Suplementos Minerales</option>
+                  <option value="Premezclas Vitamínicas">Premezclas Vitamínicas</option>
+                </select>
+              </td>
+              <td>
+                <!-- Campo de entrada para cantidad de salida en kilogramos -->
+                <input  type="text" name="cantidad" id="cantidad" class="form-control" placeholder="Cantidad (kg)">
+              </td>
+              <td>
+                <!-- Selector de Destinos -->
+                <select name="destino" id="destino" class="form-select">
+                  <option selected disabled>Seleccionar destino</option> <!-- Opción predeterminada -->
+                  <option value="Maternidad">Maternidad</option>
+                  <option value="Lactancia">Lactancia</option>
+                  <option value="Reproductores">Reproductores</option>
+                  <option value="Precebo">Precebo</option>
+                  <option value="Ceba">Ceba</option>
+                </select>
+              </td>
+              <td>
+                <!-- Selector de Responsables -->
+                <select name="responsable" id="responsable class="form-select">
+                  <option selected disabled>Seleccionar responsable</option> <!-- Opción predeterminada -->
+                  <option value="Supervisor 1">Supervisor 1</option>
+                  <option value="Supervisor 2">Supervisor 2</option>
+                  <option value="Operador A">Operador A</option>
+                  <option value="Operador B">Operador B</option>
+                  <option value="Encargado de Maternidad">Encargado de Maternidad</option>
+                </select>
+              </td>
+              
+
+            </tr>
+            <!-- Más filas aquí -->
+          </tbody>
+        </table>
+        <a id="addUserButton" class=" btn-agregar-usuario mt-3">Agregar Fila</a>
+        <a id="deleteUserButton" class=" btn-agregar-usuario mt-3">Eliminar Fila</a>
+        <a id="exportExcelButton"  class=" btn-agregar-usuario mt-3">Exportar Excel</a>
+      </main>
+      
+      <footer class="d-flex justify-content-center align-items-center  text-white gap-4">
+        <button class="btn ">Guardar</button>
+        <button id="printButton" class="btn ">Imprimir</button>
+      </footer>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+      <script src="/assets/js/registroDiarioDeConsumoDeAlimentos.js"></script> <!--  agregar y eliminar filas en la tabla-->
+         
+    
+</body>
+
+</html>

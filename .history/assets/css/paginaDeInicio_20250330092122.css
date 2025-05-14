@@ -1,9 +1,0 @@
-
-#sidebar.open {
-    display: block;
-  }
-  #sidebar {
-    z-index: 1050; /* Más alto que otros elementos */
-  }
-  
-  

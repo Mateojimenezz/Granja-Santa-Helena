@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Información de la Cerda</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/seguimientoDeGestacion.css">
+  
+</head>
+<body>
+  <div class="container my-5">
+    <div class="info-container">
+      <h2 class="info-title">Información de la Cerda</h2>
+      
+      <!-- Información Básica -->
+      <div class="data-section">
+        <p><strong>ID:</strong> <span id="cerdaId">M-001</span></p>
+        <p><strong>Peso:</strong> <span id="cerdaPeso">95 KG</span></p>
+        <p><strong>Jaula N°:</strong> <span id="cerdaJaula">J-1</span></p>
+      </div>
+
+      <!-- Observaciones -->
+      <div class="data-section">
+        <p><strong>Resultado del Examen General:</strong> <span id="resultadoExamen">Signos vitales normales, buen comportamiento.</span></p>
+        <p><strong>Evaluación Nutricional:</strong> <span id="evaluacionNutricional">Ajustes en la dieta con mayor contenido de proteínas.</span></p>
+        <p><strong>Condiciones Ambientales:</strong> <span id="condicionesAmbientales">Ambiente limpio y fresco.</span></p>
+      </div>
+
+      <!-- Botones -->
+      <div class="btn-container">
+        <button class="btn btn-form" onclick="editarCerda()">Editar Cerda</button>
+        <button class="btn btn-form" onclick="seguirGestacion()">Seguimiento de Gestación</button>
+        <button class="btn btn-form" onclick="registroParto()">Registro de Parto</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Función para redirigir al formulario de edición de cerda
+    function editarCerda() {
+      window.location.href = 'formularioEditarCerda.html'; // Cambia esta URL según tu proyecto
+    }
+
+    // Función para redirigir al formulario de seguimiento de gestación
+    function seguirGestacion() {
+      window.location.href = 'formularioGestacion.html'; // Cambia esta URL según tu proyecto
+    }
+
+    // Función para redirigir al formulario de registro de parto
+    function registroParto() {
+      window.location.href = 'formularioRegistroParto.html'; // Cambia esta URL según tu proyecto
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+@import "./variables.css";
+body {
+    background-color: var(--color-FondoDiv2);
+    font-family: Arial;
+    color: var(--color-TextoMenuLateral);
+    transform: scale(0.9); /* Escalar el contenido al 90% */
+    transform-origin: top ; /* Mantener el contenido en la esquina superior izquierda */
+    padding: 0;
+  }

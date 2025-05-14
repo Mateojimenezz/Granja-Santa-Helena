@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario Monitoreo de Lechones </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/formularioGestionProduccion.css">
+ 
+</head>
+<body>
+    <div class="form-container my-5">
+        <h3 class="text-center mb-4">Monitoreo de Lechones</h3>
+        <form id="monitoreoLechonesForm">
+          <!-- Primera fila: ID, Peso y Jaula -->
+          <div class="row mb-3">
+            <div class=" col-md-2 DivphotoCerda text-center mb-4">
+                <!-- Imagen de la cerda -->
+                <img id="cerdaPhoto" src="./assets/img/default-photo.jpg" alt="Foto de la Cerda" class="img-thumbnail" >
+                <!-- Botón para editar foto -->
+                <a class="btn btn-cerdaPhoto mt-1" onclick="document.getElementById('photoInput').click()">Editar Foto</a>
+                <!-- Input oculto para subir la foto -->
+                <input type="file" id="photoInput" style="display: none;" accept="image/*" onchange="updatePhoto(event)">
+              </div>
+            <div class="col-md-3">
+              <label for="idLechon" class="form-label">ID</label>
+              <input type="text" class="form-control" id="idLechon" name="idLechon" required>
+            </div>
+            <div class="col-md-3">
+              <label for="pesoLechon" class="form-label">Peso</label>
+              <input type="text" class="form-control" id="pesoLechon" name="pesoLechon" required>
+            </div>
+            <div class="col-md-3">
+              <label for="jaulaLechon" class="form-label">Jaula N°</label>
+              <input type="text" class="form-control" id="jaulaLechon" name="jaulaLechon" required>
+            </div>
+          </div>
+      
+          <!-- Segunda fila: Fechas de inicio y pesaje -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="fechaInicioCeba" class="form-label">Fecha de Inicio de Ceba</label>
+              <input type="date" class="form-control" id="fechaInicioCeba" name="fechaInicioCeba" required>
+            </div>
+            <div class="col-md-6">
+              <label for="fechaPesaje" class="form-label">Fecha de Pesaje</label>
+              <input type="date" class="form-control" id="fechaPesaje" name="fechaPesaje" required>
+            </div>
+          </div>
+      
+          <!-- Tercera fila: Vacunas y Estado de Salud -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="vacunasAplicadas" class="form-label">Vacunas Aplicadas</label>
+              <textarea class="form-control" id="vacunasAplicadas" name="vacunasAplicadas" rows="2" required></textarea>
+            </div>
+            <div class="col-md-6">
+              <label for="estadoSalud" class="form-label">Estado de Salud del Animal</label>
+              <textarea class="form-control" id="estadoSalud" name="estadoSalud" rows="2" required></textarea>
+            </div>
+          </div>
+      
+          <!-- Cuarta fila: Tratamientos y consumo -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="registroTratamientos" class="form-label">Registro de Tratamientos</label>
+              <textarea class="form-control" id="registroTratamientos" name="registroTratamientos" rows="2"></textarea>
+            </div>
+            <div class="col-md-6">
+              <label for="consumoAlimento" class="form-label">Consumo de Alimento Diario (Kg)</label>
+              <textarea class="form-control" id="consumoAlimento" name="consumoAlimento" rows="2" required> </textarea>
+            </div>
+          </div>
+      
+          <!-- Quinta fila: Agua y Condiciones Ambientales -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="consumoAgua" class="form-label">Consumo de Agua en Litros</label>
+              <input type="text" class="form-control" id="consumoAgua" name="consumoAgua" required>
+            </div>
+            <div class="col-md-6">
+              <label for="condicionesAmbientales" class="form-label">Condiciones Ambientales (Temperatura)</label>
+              <input type="text" class="form-control" id="condicionesAmbientales" name="condicionesAmbientales" required>
+            </div>
+          </div>
+      
+          <!-- Sexta fila: Observaciones -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label for="observaciones" class="form-label">Observaciones</label>
+              <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
+            </div>
+          </div>
+      
+          <!-- Botones -->
+          <div class="text-center">
+            <button type="button" class="btn btn-form me-2" onclick="imprimirFormularioMonitoreo()">Imprimir</button>
+            <button type="submit" class="btn btn-form">Guardar</button>
+          </div>
+        </form>
+      
+        <!-- Sección para vista de impresión -->
+        <div id="printableMonitoreo" style="display: none;">
+            <h2 class="text-center">Monitoreo de Lechones</h2>
+            <br>
+            <!-- Imagen de la cerda en impresión -->
+            <div class="text-center">
+              <img id="printCerdaPhoto" src="./assets/img/default-photo.jpg" alt="Foto de la Cerda" class="img-thumbnail" style="max-width: 200px;">
+            </div>
+            <br>
+          
+            <p><strong>ID:</strong> <span id="printIdLechon"></span></p>
+            <p><strong>Peso:</strong> <span id="printPesoLechon"></span></p>
+            <p><strong>Jaula N°:</strong> <span id="printJaulaLechon"></span></p>
+            <p><strong>Fecha de Inicio de Ceba:</strong> <span id="printFechaInicioCeba"></span></p>
+            <p><strong>Fecha de Pesaje:</strong> <span id="printFechaPesaje"></span></p>
+            <p><strong>Vacunas Aplicadas:</strong> <span id="printVacunasAplicadas"></span></p>
+            <p><strong>Estado de Salud:</strong> <span id="printEstadoSalud"></span></p>
+            <p><strong>Registro de Tratamientos:</strong> <span id="printRegistroTratamientos"></span></p>
+            <p><strong>Consumo de Alimento Diario (Kg):</strong> <span id="printConsumoAlimento"></span></p>
+            <p><strong>Consumo de Agua en Litros:</strong> <span id="printConsumoAgua"></span></p>
+            <p><strong>Condiciones Ambientales:</strong> <span id="printCondicionesAmbientales"></span></p>
+            <p><strong>Observaciones:</strong> <span id="printObservaciones"></span></p>
+          </div>
+          
+        
+
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/formularioMonitoreoDeLechonesPrecebo.js"></script>
+  
+ 
+</body>
+</html>
