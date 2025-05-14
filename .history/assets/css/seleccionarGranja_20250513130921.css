@@ -1,0 +1,81 @@
+
+@import "./variables.css";
+body{
+    background-color: var( --color-FondoDiv2);
+}
+.container h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--color-TextoMenuLateral);
+    font-family: var(--font-principal);
+}
+.granja-card {
+  
+        box-shadow: 0px 2px 4px 1px  rgba(25, 157, 60, 0.6) /* Sombra verde */
+
+}
+
+
+
+.granja-card button {
+    margin-top: 10px;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.card-img-top {
+    width: 100%;
+    height: 200px; /* Ajusta según el diseño */
+    object-fit: cover; /* Recorta la imagen para que se ajuste sin deformarse */
+
+}
+.btn-form{
+    background-color: var(  --color-Botones);
+    padding: 10px 35px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 30px;
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 2px 4px 1px  rgba(25, 157, 60, 0.6) /* Sombra verde */
+
+  }
+  .btn-form:hover {
+    background-color: #f4cf50; /* Tonalidad más oscura */
+    color: black;
+  }
+  .btn-form:active {
+    background-color:var(--color-principal)!important;
+    color: white !important;
+    box-shadow: none !important;
+  }
+
+#granjas-container {
+    position: relative; /* Habilita posicionamiento dentro del contenedor */
+    display: flex;
+    
+
+}
+
+#agregar-granja {
+    position: absolute;
+    top: 30px; /* Ajusta la distancia desde arriba */
+    right: 50px; /* Ajusta la distancia desde la derecha */
+    z-index: 100; /* Asegura que el botón esté por encima de otros elementos */
+    padding: 10px 15px;
+    font-size: 1em;
+}
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 768px) {
+    #agregar-granja {
+        width: 50px; /* Tamaño más compacto */
+        height: 50px;
+        font-size: 20px;
+        position: fixed; /* Fijarlo para que siempre esté visible */
+        bottom: 15px; /* Lo coloca en la parte inferior */
+        right: 15px; /* Lo mantiene accesible */
+        z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    }
+}

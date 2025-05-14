@@ -1,0 +1,42 @@
+
+@import "./variables.css";
+body{
+    background-color: var( --color-FondoDiv2);
+}
+.granja-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.container h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--color-TextoMenuLateral);
+    font-family: var(--font-principal);
+}
+.granja-card {
+    width: 50px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+
+
+
+.granja-card button {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.card-img-top {
+    width: 50%;
+    height: 200px; /* Ajusta según el diseño */
+    object-fit: cover; /* Recorta la imagen para que se ajuste sin deformarse */
+}
