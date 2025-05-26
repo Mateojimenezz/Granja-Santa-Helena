@@ -8,6 +8,7 @@
     .container{
         flex-direction: column; /* Botones en columna */
         align-items: center; /* Centra los botones */
+      
         margin-top: 20px;
     }
 

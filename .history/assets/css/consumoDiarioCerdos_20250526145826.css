@@ -1,0 +1,16 @@
+* 📌 Ajuste para pantallas pequeñas */
+@media (max-width: 768px) {
+    .mt-4 {
+        flex-direction: column; /* Botones en columna */
+    }
+
+    .btn-agregar-usuario {
+        width: 100%; /* Botones ocupan todo el ancho */
+    }
+
+    #tablaImagen {
+        width: 100%; /* La imagen ocupa el ancho total */
+        height: auto; /* Mantiene proporción */
+        max-width: 100%;
+    }
+}
