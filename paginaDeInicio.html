@@ -23,15 +23,13 @@
         <button class="navbar-toggler toggler-focus text-white" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse  d-lg-none" id="menu">
+        <div class="collapse navbar-collapse" id="menu">
           <ul class="navbar-nav ms-auto    gap-md-3 gap-lg-5">
             <li class="nav-item"><a class="nav-link "  > <i class="icon-left bi bi-people d-lg-none "></i>Usuarios</a>
               <ul class="submenu submenu-hidden">
                 <li><a class="nav-link" >Gestión de Roles y Permisos</a>
                   <ul class="sub-submenu sub-submenu-hidden">
                     <li><a class="nav-link  menu-link " target="iframe-content"  href="./Gestion_de_permisos_roles.html" data-title="Gestion de usuario">Usuarios</a></li>
-
-
                   </ul>
                 </li>
                 <li><a  class="nav-link menu-link" target="iframe-content"  href="./registroDeActividades.html" data-title="registro de actividades">Registro de Actividades</a></li>
@@ -106,7 +104,7 @@
             <li class="nav-item"><a class="nav-link menu-link" target="iframe-content" data-title="Salud Animal" href="./SaludAnimal.html"> <i class="icon-left bi bi-heart-pulse d-lg-none"></i> Salud Animal</a></li>
             <li class="nav-item"><a class="nav-link menu-link" target="iframe-content" data-title="Salud Animal" href="./Ventas.html">  <i class="icon-left bi bi-cash d-lg-none"></i>Ventas</a></li>
           </ul> 
-          <button id="logoutButton" class="logout-button d-block d-md-none d-lg-none">Cerrar Sesión</button>         
+          <button class="logout-button cerrar-sesion d-block d-md-none d-lg-none">Cerrar Sesión</button>        
         </div>
         </div>
       </nav>
@@ -128,22 +126,17 @@
     <ul id="sisidebarMenu"  class="nav flex-column" >
     
     </ul>
-     <!-- Botón de Cerrar Sesión -->
-  <button id="logoutButton" class="logout-button ">Cerrar Sesión</button>
+    <!-- Botón de cerrar sesión -->
+    <button class="logout-button cerrar-sesion">Cerrar Sesión</button>
+
+    <!-- Enlace al script de cierre de sesión -->
+    <script src="logout.js"></script>
+
   </div>
   <main class="container-fluid  pt-5  mainContent">
     <iframe id="iframe-content" name="iframe-content" src="./introduccion.html" frameborder="0"></iframe>
 
-
   </main>
-
-  
-  
-
-    
-    
-
-
   <!-- bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="./assets/js/menu.js"></script>
@@ -152,8 +145,6 @@
   <script src="./assets/js/menuHandler.js"></script>
   <script src="./assets/js/actualizarURL.js"></script>
  
-  
-  
 </body>
 
 </html>
