@@ -1,0 +1,14 @@
+    // Función para redirigir al formulario de edición de cerda
+    function editarCerda() {
+        window.location.href = 'formularioEditarCerda.html'; // Cambia esta URL según tu proyecto
+      }
+  
+      // Función para redirigir al formulario de seguimiento de gestación
+      function seguirGestacion() {
+        window.location.href = 'formularioGestacion.html'; // Cambia esta URL según tu proyecto
+      }
+  
+      // Función para redirigir al formulario de registro de parto
+      function registroParto() {
+        window.location.href = 'formularioRegistroParto.html'; // Cambia esta URL según tu proyecto
+      }

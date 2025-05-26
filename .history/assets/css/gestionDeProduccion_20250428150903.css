@@ -1,0 +1,28 @@
+@import "./variables.css";
+body {
+    background-color: var(--color-FondoDiv2);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+h1{
+    font-family: var(--font-principal);
+    color:  #FFBB00;
+    font-size: 1em;
+    font-weight: bold;
+    text-shadow: gray 1px 2px 5px;
+    margin-top: 50px;
+}
+.container {
+    max-height: 100vh; /* Limitar la altura de la pantalla */
+    overflow: hidden;
+  }
+
+  .card-img-top {
+    max-height: 45vh; /* Cada imagen ocupa menos de la mitad de la pantalla */
+    object-fit: cover; /* Ajustar el contenido sin deformar la imagen */
+  }
+
+  .card {
+    margin-bottom: 20px;
+  }

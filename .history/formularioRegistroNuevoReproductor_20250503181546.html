@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Manejo de Parideras</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/formularioGestionProduccion.css">
+ 
+</head>
+<body>
+  <div class="focontainer my-5">
+    <h2 class="text-center mb-4">Registro de Nuevo Reproductor</h2>
+    <form id="reproductorForm">
+      <!-- Primera fila: Fecha de Nacimiento, ID, Peso, Jaula -->
+      <div class="row mb-3">
+        <div class="col-md-3">
+          <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+          <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" required>
+        </div>
+        <div class="col-md-3">
+          <label for="idReproductor" class="form-label">ID</label>
+          <input type="text" class="form-control" id="idReproductor" name="idReproductor" required>
+        </div>
+        <div class="col-md-3">
+          <label for="pesoReproductor" class="form-label">Peso</label>
+          <input type="text" class="form-control" id="pesoReproductor" name="pesoReproductor" required>
+        </div>
+        <div class="col-md-3">
+          <label for="jaulaReproductor" class="form-label">Jaula N°</label>
+          <input type="text" class="form-control" id="jaulaReproductor" name="jaulaReproductor" required>
+        </div>
+      </div>
+  
+      <!-- Segunda fila: Género y Raza -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="generoReproductor" class="form-label">Género</label>
+          <select class="form-control" id="generoReproductor" name="generoReproductor" required>
+            <option value="Macho">Macho</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="razaReproductor" class="form-label">Raza</label>
+          <input type="text" class="form-control" id="razaReproductor" name="razaReproductor" required>
+        </div>
+      </div>
+  
+      <!-- Tercera fila: Fecha de Ingreso -->
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <label for="fechaIngreso" class="form-label">Fecha de Ingreso</label>
+          <input type="date" class="form-control" id="fechaIngreso" name="fechaIngreso" required>
+        </div>
+      </div>
+  
+      <!-- Cuarta fila: Historial de Servicio -->
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <label for="historialServicio" class="form-label">Historial de Servicio</label>
+          <textarea class="form-control" id="historialServicio" name="historialServicio" rows="3"></textarea>
+        </div>
+      </div>
+  
+      <!-- Quinta fila: Observaciones -->
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <label for="observacionesReproductor" class="form-label">Observaciones</label>
+          <textarea class="form-control" id="observacionesReproductor" name="observacionesReproductor" rows="3"></textarea>
+        </div>
+      </div>
+  
+      <!-- Botones -->
+      <div class="text-center">
+        <button type="button" class="btn btn-form me-2" onclick="imprimirFormularioReproductor()">Imprimir</button>
+        <button type="submit" class="btn btn-form">Guardar</button>
+      </div>
+    </form>
+  
+    <!-- Sección para vista de impresión -->
+    <div id="printableReproductor" style="display: none;">
+      <h2 class="text-center">Registro de Nuevo Reproductor</h2>
+      <br>
+      <p><strong>Fecha de Nacimiento:</strong> <span id="printFechaNacimiento"></span></p>
+      <p><strong>ID:</strong> <span id="printIdReproductor"></span></p>
+      <p><strong>Peso:</strong> <span id="printPesoReproductor"></span></p>
+      <p><strong>Jaula N°:</strong> <span id="printJaulaReproductor"></span></p>
+      <p><strong>Género:</strong> <span id="printGeneroReproductor"></span></p>
+      <p><strong>Raza:</strong> <span id="printRazaReproductor"></span></p>
+      <p><strong>Fecha de Ingreso:</strong> <span id="printFechaIngreso"></span></p>
+      <p><strong>Historial de Servicio:</strong> <span id="printHistorialServicio"></span></p>
+      <p><strong>Observaciones:</strong> <span id="printObservacionesReproductor"></span></p>
+    </div>
+  </div>
+  
+    
+      
+      
+      
+      
+
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/formularioRegistroNuevoReproductor.js"></script>
+  
+ 
+</body>
+</html>

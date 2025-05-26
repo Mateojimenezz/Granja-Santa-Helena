@@ -1,0 +1,53 @@
+@import "./variables.css";
+body {
+    background-color: var(--color-FondoDiv2);
+    font-family: Arial;
+    color: var(--color-TextoMenuLateral);
+    transform: scale(0.9); /* Escalar el contenido al 90% */
+    transform-origin: top ; /* Mantener el contenido en la esquina superior izquierda */
+    padding: 0;
+  }
+  .info-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .info-title {
+    
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  .info-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .data-section {
+    margin-bottom: 20px;
+  }
+  .btn-form{
+    background-color: var(  --color-Botones);
+    padding: 10px 35px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 30px;
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 2px 4px 1px  rgba(25, 157, 60, 0.6) /* Sombra verde */
+
+  }
+  .btn-form:hover {
+    background-color: #f4cf50; /* Tonalidad más oscura */
+    color: black;
+  }
+  .btn-form:active {
+    background-color:var(--color-principal)!important;
+    color: white !important;
+    box-shadow: none !important;
+  }

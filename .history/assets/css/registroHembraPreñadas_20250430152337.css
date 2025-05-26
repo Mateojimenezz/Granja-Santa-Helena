@@ -1,0 +1,79 @@
+@import "./variables.css";
+
+.card-img-top {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  .bi-plus {
+    position: absolute;
+    color: rgb(25, 157, 58); /* Color del ícono */
+    right: -2px;
+    top: -5px;
+}
+.bi-plus:hover {
+    color: red; /* Color del ícono al pasar */
+}
+
+.add-button {
+    position: fixed;
+    top: 20px; /* Parte superior */
+    right: 20px; /* A la derecha */
+    background-color: transparent;
+    color:var(--color-principal); /* Color del ícono */
+    border: 1px solid rgb(238, 233, 233); /* Sin bordes */
+    border-radius: 50%;
+    width: auto; /* Tamaño del contenido */
+    height: auto;
+    font-size: 28px; /* Tamaño del ícono */
+    z-index: 1000; /* Siempre visible */
+    cursor: pointer; /* Manito al pasar */
+    padding: 12px;
+    display: flex; /* Asegurar que el contenido se agrupe */
+    align-items: center; /* Centrar los íconos verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    box-shadow: 0 4px 8px 1px rgba(165, 166, 165, 0.6); /* Sombra verde */
+}
+
+.add-button:hover {
+    background-color: var(--color-Botones) !important;
+    color:black; /* Color del ícono al pasar */
+    border-radius: 40%; /* Bordes redondeados */
+    box-shadow: 0 4px 8px 1px rgba(25, 157, 60, 0.6); /* Sombra verde */
+}
+.btn-form{
+    background-color: var(  --color-Botones);
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 30px;
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 2px 4px 1px  rgba(25, 157, 60, 0.6) /* Sombra verde */
+
+  }
+  .btn-form:hover {
+    background-color: #f4cf50; /* Tonalidad más oscura */
+    color: black;
+  }
+  .btn-form:active {
+    background-color:var(--color-principal)!important;
+    color: white !important;
+    box-shadow: none !important;
+  }
+@media screen and (max-width: 991px) {
+    .add-button {
+        top: 10px; /* Parte superior */
+        right: 10px; /* A la derecha */
+        font-size: 24px; /* Tamaño del ícono */
+        padding: 8px; /* Espacio interno */
+    }
+    .add-button:hover {
+        font-size: 26px; /* Tamaño del ícono al pasar */
+    }
+    .card-img-top {
+        height: 100px; /* Altura de la imagen */
+    }
+    
+}
+  

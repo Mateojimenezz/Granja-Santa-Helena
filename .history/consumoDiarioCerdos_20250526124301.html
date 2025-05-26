@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Consumo Alimento Diario de Cerdos</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+     <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container mt-5 text-center">
+        <h2 class="mb-4">Tabla de Consumo Diario de Alimentos</h2>
+
+        <!-- Imagen de la tabla -->
+        <img id="tablaImagen" src="./assets/img/TABLA DE CONSUMO DIARIO DE CERDOS.png" alt="Tabla de Consumo" class="img-fluid border p-2">
+ <div class="mt-4">
+    <input type="file" id="uploadExcel" class="d-none" accept=".xlsx">
+    <button class="btn btn-primary" id="editarExcel">Editar en Excel</button>
+    <button class="btn btn-warning" id="actualizarExcel">Actualizar Excel</button>
+    <button class="btn btn-danger" id="exportarPDF">Exportar a PDF</button>
+    <input type="file" id="uploadImagen" class="d-none" accept="image/*">
+    <button class="btn btn-success" id="actualizarImagen">Actualizar Imagen</button>
+</div>
+
+      
+
+    </div>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script src="./assets/js/consumoDiarioCerdos.js"></script>
+
+</body>
+</html>
