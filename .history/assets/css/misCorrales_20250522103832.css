@@ -1,0 +1,33 @@
+.num-negro {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.num-rojo {
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.num-verde {
+    color: green;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* 🔥 Lotes Activos con color verde más destacado */
+.lotes-activos {
+    color: green;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: rgba(0, 128, 0, 0.1); /* Fondo verde suave */
+    padding: 5px;
+    border-radius: 5px;
+}
+.imgCard{
+    display: block; /* Hace que la imagen se comporte como un bloque */
+    margin: auto; /* Centra la imagen horizontalmente */
+    max-width: 100%; /* Ajusta el tamaño sin desbordar */
+    height: auto; /* Mantiene la proporción original */
+}
