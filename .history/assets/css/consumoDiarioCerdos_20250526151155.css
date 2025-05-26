@@ -4,13 +4,7 @@
     margin-top: 20px; /* Espacio superior */
     gap: 10px; /* Espacio entre los botones */
 }
-@media (max-width: 768px) {
-    .container{
-        flex-direction: column; /* Botones en columna */
-        align-items: center; /* Centra los botones */
-        margin-top: 20px;
-    }
-
+@media (max-width: 768px) {7
     .botonesTc {
         flex-direction: column; /* Botones en columna */
     }

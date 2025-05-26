@@ -8,7 +8,8 @@
     .container{
         flex-direction: column; /* Botones en columna */
         align-items: center; /* Centra los botones */
-        margin-top: 20px;
+        padding: 20px; /* Espacio alrededor del contenido */
+        mar
     }
 
     .botonesTc {

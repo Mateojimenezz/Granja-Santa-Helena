@@ -1,16 +1,10 @@
 .botonesTc{
     display: flex; /* Usar flexbox para alinear los botones */
-    justify-content: center; /* Espacio entre los botones */
+    
+
     margin-top: 20px; /* Espacio superior */
-    gap: 10px; /* Espacio entre los botones */
 }
 @media (max-width: 768px) {
-    .container{
-        flex-direction: column; /* Botones en columna */
-        align-items: center; /* Centra los botones */
-        margin-top: 20px;
-    }
-
     .botonesTc {
         flex-direction: column; /* Botones en columna */
     }
