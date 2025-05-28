@@ -237,3 +237,57 @@ function filtrarTabla() {
 }
 
 document.getElementById('busqueda').addEventListener('keyup', filtrarTabla);
+// esportar a excel
+
+  document.getElementById('exportExcelButton').addEventListener('click', function (event) {
+    event.preventDefault(); // Evitar el comportamiento predeterminado del enlace
+  
+    // Crear un nuevo libro de Excel
+    const workbook = XLSX.utils.book_new();
+    const worksheetData = [];
+  
+    // Agregar encabezados al worksheet
+    worksheetData.push(['Seleccionar', 'Fecha', 'Lote', 'Categoría', 'Tipo de Alimentos', 'Cantidad de Salida', 'Destino', 'Responsable']);
+  
+    // Obtener las filas de la tabla
+    const rows = document.querySelectorAll('#userTable tbody tr');
+  
+    // Recorrer las filas y agregar los datos al worksheet
+    rows.forEach(row => {
+      const rowData = Array.from(row.cells).map(cell => {
+        const input = cell.querySelector('input, select');
+  
+        if (input) {
+          if (input.type === 'checkbox') {
+            // Devuelve "on" si está marcado, "off" si no
+            return input.checked ? 'oof' : 'on';
+          } else if (input.tagName === 'SELECT') {
+            // Capturar el texto de la opción seleccionada
+            const selectedOption = input.options[input.selectedIndex];
+            return selectedOption ? selectedOption.text.trim() : 'Sin Seleccionar';
+          } else if (input.type === 'date') {
+            // Capturar la fecha directamente
+            return input.value;
+          } else {
+            // Capturar el valor de otros inputs
+            return input.value || 'N/A';
+          }
+        }
+  
+        // Capturar el texto plano de la celda si no tiene input o select
+        return cell.textContent.trim();
+      });
+  
+      // Agregar la fila procesada al worksheet
+      worksheetData.push(rowData);
+    });
+  
+    // Crear el worksheet a partir de los datos procesados
+    const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+  
+    // Añadir el worksheet al libro de Excel
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Inventario');
+  
+    // Guardar el archivo Excel
+    XLSX.writeFile(workbook, 'Inventario_de_alimentos.xlsx');
+  });

@@ -35,64 +35,64 @@
           <th>Estado</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>
-            <input type="checkbox" name="seleccionar" class="form-check-input input-control" />
-          </td>
-          <td>
-            <select id="categoria" name="categoria" class="form-select form-select-categoria input-control" title="Seleccione una categoría">
-              <option selected disabled>Seleccionar</option>
-              <option value="Energeticos">Alimentos Energéticos</option>
-              <option value="Proteicos">Alimentos Proteicos</option>
-              <option value="Fibrosos">Alimentos Fibrosos</option>
-              <option value="Minerales">Alimentos Minerales</option>
-              <option value="Vitaminas">Vitaminas</option>
-            </select>
-          </td>
-          <td>
-            <select id="tipo" name="tipo" class="form-select form-select-tipo input-control" title="Seleccione un tipo de alimento">
-              <option selected disabled>Seleccionar Tipo</option>
-              <!-- Este campo se llenará dinámicamente según la categoría -->
-            </select>
-          </td>
-          <td>
-            <input type="text" name="cantidad" id="cantidad" class="input-no-border" placeholder="Cantidad (kg)" />
-          </td>
-          <td>
-            <input type="date" name="fecha-entrada" id="fecha-entrada" class="input-no-border" />
-          </td>
-          <td>
-            <select id="proveedor" name="proveedor" class="form-select input-control">
-              <option selected disabled>Seleccionar</option>
-              <option value="Proveedor 1">Proveedor 1</option>
-              <option value="Proveedor 2">Proveedor 2</option>
-              <option value="Proveedor 3">Proveedor 3</option>
-            </select>
-          </td>
-          <td>
-            <select id="lote" name="lote" class="form-select input-control">
-              <option selected disabled>Seleccionar</option>
-              <option value="Lote 1">Lote 1</option>
-              <option value="Lote 2">Lote 2</option>
-              <option value="Lote 3">Lote 3</option>
-            </select>
-          </td>
-          <td>
-            <input type="date" id="fecha-caducidad" name="fecha-caducidad" class="input-no-border form-control-fecha fecha-caducidad" />
-          </td>
-          <td>
-            <input type="text" id="responsable" name="responsable" class="input-no-border" placeholder="Nombres" />
-          </td>
-          <td>
-            <span id="estado-alimento" name="estado-alimento" class="estado-alimento"></span>
-          </td>
-        </tr>
-      </tbody>
+    <tbody>
+  <tr>
+    <td>
+      <input type="checkbox" name="seleccionar" class="form-check-input input-control" />
+    </td>
+    <td>
+      <select id="categoria" name="categoria" class="form-select form-select-categoria input-control" title="Seleccione una categoría">
+        <option selected disabled>Seleccionar</option>
+        <option value="Energeticos">Alimentos Energéticos</option>
+        <option value="Proteicos">Alimentos Proteicos</option>
+        <option value="Fibrosos">Alimentos Fibrosos</option>
+        <option value="Minerales">Alimentos Minerales</option>
+        <option value="Vitaminas">Vitaminas</option>
+      </select>
+    </td>
+    <td>
+      <select id="tipo" name="tipo" class="form-select form-select-tipo input-control" title="Seleccione un tipo de alimento">
+        <option selected disabled>Seleccionar Tipo</option>
+      </select>
+    </td>
+    <td>
+      <input type="text" name="cantidad" id="cantidad" class="input-no-border" placeholder="Cantidad (kg)" />
+    </td>
+    <td>
+      <input type="date" name="fecha-entrada" id="fecha-entrada" class="input-no-border" />
+    </td>
+    <td>
+      <select id="proveedor" name="proveedor" class="form-select input-control form-select-proveedor">
+        <option selected disabled>Seleccionar</option>
+        <option value="Proveedor 1">Proveedor 1</option>
+        <option value="Proveedor 2">Proveedor 2</option>
+        <option value="Proveedor 3">Proveedor 3</option>
+      </select>
+    </td>
+    <td>
+      <select id="lote" name="lote" class="form-select input-control form-select-lote">
+        <option selected disabled>Seleccionar</option>
+        <option value="Lote 1">Lote 1</option>
+        <option value="Lote 2">Lote 2</option>
+        <option value="Lote 3">Lote 3</option>
+      </select>
+    </td>
+    <td>
+      <input type="date" id="fecha-caducidad" name="fecha-caducidad" class="input-no-border form-control-fecha fecha-caducidad" />
+    </td>
+    <td>
+      <input type="text" id="responsable" name="responsable" class="input-no-border input-responsable" placeholder="Nombres" />
+    </td>
+    <td>
+      <span id="estado-alimento" name="estado-alimento" class="estado-alimento"></span>
+    </td>
+  </tr>
+</tbody>
     </table>
-    <button id="addUserButton" class="btn-agregar-usuario mt-3" type="button">Agregar Fila</button>
-    <button id="deleteUserButton" class="btn-agregar-usuario mt-3" type="button">Eliminar Fila</button>
-    <button id="exportarExcel" class="btn-agregar-usuario mt-3" type="button">Exportar Excel</button>
+    <a id="addUserButton" class=" btn-agregar-usuario mt-3">Agregar Fila</a>
+        <a id="deleteUserButton" class=" btn-agregar-usuario mt-3">Eliminar Fila</a>
+        <a id="exportExcelButton"  class=" btn-agregar-usuario mt-3">Exportar Excel</a>
+        
   </main>
 
   <footer class="d-flex justify-content-center align-items-center text-white gap-4 mt-4">
