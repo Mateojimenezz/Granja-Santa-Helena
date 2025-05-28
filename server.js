@@ -4,7 +4,7 @@ const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
-const db = require('./db'); // Asegúrate que este módulo exporta conexión MySQL correctamente
+const db = require('./db');
 const { v4: uuidv4 } = require('uuid');
 const nodemailer = require('nodemailer');
 
@@ -29,7 +29,7 @@ app.use(cors({
 
 // Configuración de sesiones
 app.use(session({
-  secret: 'mi_clave_secreta',  // Mejor poner en .env
+  secret: 'mi_clave_secreta', 
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -80,32 +80,44 @@ app.post('/api/usuarios', (req, res) => {
 // Login
 app.post('/api/login', (req, res) => {
   const { email, password } = req.body;
-  if (!email || !password) return res.status(400).json({ message: 'Correo y contraseña son requeridos' });
+
+  if (!email || !password) {
+    console.log('❌ Faltan datos en login:', { email, password });
+    return res.status(400).json({ message: 'Correo y contraseña son requeridos' });
+  }
+
+  console.log('📥 Intento de login:', { email });
 
   db.query('SELECT * FROM usuarios WHERE email = ?', [email], (err, results) => {
     if (err) {
-      console.error('Error en la consulta login:', err);
+      console.error('❌ Error en la consulta login:', err);
       return res.status(500).json({ message: 'Error en la base de datos' });
     }
 
     if (results.length === 0) {
+      console.log('❌ Usuario no encontrado:', email);
       return res.status(400).json({ message: 'Correo o contraseña incorrectos' });
     }
 
     const user = results[0];
+
     bcrypt.compare(password, user.contrasena, (err, isMatch) => {
       if (err) {
-        console.error('Error al comparar contraseña:', err);
+        console.error('❌ Error al comparar contraseña:', err);
         return res.status(500).json({ message: 'Error al verificar contraseña' });
       }
 
       if (!isMatch) {
+        console.log('❌ Contraseña incorrecta para:', email);
         return res.status(400).json({ message: 'Correo o contraseña incorrectos' });
       }
+
+      console.log('✅ Usuario autenticado:', { Usuario: user.Nombre, Id: user.Identificacion });
 
       // Guardar info en la sesión
       req.session.userId = user.id;
       req.session.email = user.email;
+
       res.status(200).json({ 
         message: 'Inicio de sesión exitoso', 
         user: { id: user.id, nombre: user.nombre, email: user.email } 
@@ -113,6 +125,7 @@ app.post('/api/login', (req, res) => {
     });
   });
 });
+
 
 // Ruta para cerrar sesión
 app.get('/logout', (req, res) => {
@@ -184,25 +197,69 @@ app.post('/api/recuperar', (req, res) => {
   });
 });
 
-// Ruta para guardar datos del inventario de alimentos 
-app.post('/api/inventario', (req, res) => {
-  const { nombre, descripcion, cantidad, ubicacion } = req.body;
+// Ruta para guardar datos del inventario de alimentos;
 
-  if (!nombre || !descripcion || !cantidad || !ubicacion) {
-    return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
+app.post("/api/inventario", (req, res) => {
+  const datos = req.body;
+
+  if (!Array.isArray(datos) || datos.length === 0) {
+    return res.status(400).json({ message: "Se requiere un arreglo de datos." });
   }
 
-  const insertQuery = `INSERT INTO inventario (nombre, descripcion, cantidad, ubicacion) VALUES (?, ?, ?, ?)`;
+  // Validación
+  for (const item of datos) {
+    const {
+      categoria,
+      tipo,
+      cantidad,
+      fecha_entrada,
+      proveedor,
+      lote,
+      fecha_vencimiento,
+      responsable,
+      estado,
+    } = item;
 
-  db.query(insertQuery, [nombre, descripcion, cantidad, ubicacion], (err, result) => {
-    if (err) {
-      console.error('Error al guardar inventario:', err);
-      return res.status(500).json({ message: 'Error al guardar los datos del inventario.' });
+    if (
+      !categoria || !tipo || cantidad == null || !fecha_entrada ||
+      !proveedor || !lote || !fecha_vencimiento || !responsable || !estado
+    ) {
+      return res.status(400).json({ message: "Todos los campos son obligatorios." });
     }
+  }
 
-    res.status(201).json({ message: 'Inventario registrado correctamente.' });
+  // Transformar los datos para la inserción
+  const values = datos.map(item => [
+    item.categoria,
+    item.tipo,
+    item.cantidad,
+    item.fecha_entrada,
+    item.proveedor,
+    item.lote,
+    item.fecha_vencimiento,
+    item.responsable,
+    item.estado
+  ]);
+
+  const sql = `
+    INSERT INTO inventario_alimentos 
+    (categoria, tipo, cantidad, fecha_entrada, proveedor, lote, fecha_vencimiento, responsable, estado)
+    VALUES ?
+  `;
+
+  console.log("Consulta SQL:", sql);
+  console.log("Valores a insertar:", values);
+
+  db.query(sql, [values], (err, result) => {
+    if (err) {
+      console.error("❌ Error al insertar datos:", err);
+      return res.status(500).json({ message: "Error al guardar en la base de datos." });
+    }
+    console.log("✅ Inserción exitosa:", result);
+    res.status(200).json({ message: "Datos guardados correctamente.", filas_insertadas: result.affectedRows });
   });
 });
+
 
 // Ruta base
 app.get('/', (req, res) => {

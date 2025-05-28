@@ -1,149 +1,113 @@
-@import "./variables.css";
-body {
-    background-color: var(--color-FondoDiv2);
-    font-family: Arial;
-    color: var(--color-TextoMenuLateral);
-    transform: scale(0.9); /* Escalar el contenido al 90% */
-    transform-origin: top ; /* Mantener el contenido en la esquina superior izquierda */
-    padding: 0;
-  }
-.form-container {
-    max-width: 700px;
-    margin:20px auto;
-    padding: 30px 50px;  
-    background-color: var( --fondo-formularios);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-  }
-  .form-container h3 {
-    font-family: var(--font-principal);
-    color: var(--color-TextoMenuLateral);
-    margin-top: 20px;
-    padding-bottom: 20px;
-    font-size: 1em;
-    
-  }
-  .button-group {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inventario de Alimentos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="./assets/css/tablas.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="header m-5 sticky-top d-flex justify-content-center align-items-center gap-2">
+    <input type="text" id="busqueda" class="form-control w-auto" placeholder="Buscar en la tabla" />
+    <button id="boton-buscar" class="btn btn-primary" type="button">
+      <i class="bi bi-search"></i>
+    </button>
+  </header>
 
+  <main class="container">
+    <table class="table table-striped mt-3" id="userTable">
+      <thead>
+        <tr>
+          <th>Seleccionar</th>
+          <th>Categoria</th>
+          <th>Tipo de Alimentos</th>
+          <th>Cantidad (Kg)</th>
+          <th>Fecha de Entrada</th>
+          <th>Proveedor</th>
+          <th>Lote</th>
+          <th>Fecha de Vencimiento</th>
+          <th>Responsable</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input type="checkbox" class="form-check-input seleccionar-checkbox" />
+          </td>
+          <td>
+            <select class="form-select form-select-categoria" title="Seleccione una categoría">
+              <option selected disabled>Seleccionar</option>
+              <option value="Energeticos">Alimentos Energéticos</option>
+              <option value="Proteicos">Alimentos Proteicos</option>
+              <option value="Fibrosos">Alimentos Fibrosos</option>
+              <option value="Minerales">Alimentos Minerales</option>
+              <option value="Vitaminas">Vitaminas</option>
+            </select>
+          </td>
+          <td>
+            <select class="form-select form-select-tipo" title="Seleccione un tipo de alimento">
+              <option selected disabled>Seleccionar Tipo</option>
+              <!-- Dinámico según categoría -->
+            </select>
+          </td>
+          <td>
+            <input type="number" step="0.01" class="form-control cantidad-input" placeholder="Cantidad (kg)" />
+          </td>
+          <td>
+            <input type="date" class="form-control fecha-entrada-input" />
+          </td>
+          <td>
+            <select class="form-select proveedor-select">
+              <option selected disabled>Seleccionar</option>
+              <option value="Proveedor 1">Proveedor 1</option>
+              <option value="Proveedor 2">Proveedor 2</option>
+              <option value="Proveedor 3">Proveedor 3</option>
+            </select>
+          </td>
+          <td>
+            <select class="form-select lote-select">
+              <option selected disabled>Seleccionar</option>
+              <option value="Lote 1">Lote 1</option>
+              <option value="Lote 2">Lote 2</option>
+              <option value="Lote 3">Lote 3</option>
+            </select>
+          </td>
+          <td>
+            <input type="date" class="form-control fecha-caducidad-input" />
+          </td>
+          <td>
+            <input type="text" class="form-control responsable-input" placeholder="Nombres" />
+          </td>
+          <td>
+            <span class="estado-alimento"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-  .DivphotoCerda {
-    margin-top: 20px;
-    width: 150px;
-   
-  }
-  .DivphotoCerda img {
-    border-radius: 5px;
-    border: 2px solid #c8cacc;
-    width: 150px; 
-    height: 100px; 
-    object-fit: cover;
-  }
-  .input-group1{
-    gap: 20px;
-    margin-left: 50px;
-  }
-  .form-control {
-    margin-bottom: 5px; /* Espaciado más reducido entre campos */
-    padding: 5px; /* Reduce el tamaño interno del input */
-    box-shadow: 0 0px 4px 0px  rgba(25, 157, 60, 0.6) /* Sombra verde */
+    <div class="d-flex gap-2 mt-3">
+      <button id="addUserButton" class="btn btn-success" type="button">Agregar Fila</button>
+      <button id="deleteUserButton" class="btn btn-danger" type="button">Eliminar Fila</button>
+      <button id="exportExcelButton" class="btn btn-primary" type="button">Exportar Excel</button>
+    </div>
+  </main>
 
-  }
-  .form-control:focus {
-    border-color: var(--color-principal); /* Cambia el color del borde al enfocar */
-    box-shadow: 0 0 4px var(--color-principal); /* Sombra verde al enfocar */
-  }  
-  .form-label{
-    font-size: 0.8em; /* Tamaño de fuente más pequeño */
-    color: var(--color-TextoMenuLateral); /* Color del texto */
-    margin-bottom: 5px; /* Espaciado entre la etiqueta y el campo de entrada */
-    font-weight: 500; /* Peso de la fuente */
-    color: #b1afaf;
-  }
-  .btn-tratamiento{
-    position: absolute;
-    border: 1px solid var(--color-principal);
-    top: -5px;
-    right:0px;
-    background-color: var(  --color-Botones);
+  <footer class="d-flex justify-content-center align-items-center text-white gap-4 mt-4 mb-4">
+    <button id="saveButton" type="button" class="btn btn-secondary">Guardar</button>
+    <button id="printButton" type="button" class="btn btn-secondary">Imprimir</button>
+  </footer>
 
-  }
-  .btn-tratamiento:hover {
-    background-color: #f4cf50; /* Tonalidad más oscura */
-    color: black;
-  }
- .btn-tratamiento:active {
-        background-color:var(--color-principal)!important;
-        color: white !important;
-        box-shadow: none !important;
-    }
-    .button-group {
-        display: flex; /* Coloca los botones en línea */
-        justify-content: center; /* Centra los botones horizontalmente */
-        align-items: center; /* Centra los botones verticalmente */
-        gap: 20px; /* Espacio entre botones */
-      }
-  .btn-form{
-    background-color: var(  --color-Botones);
-    padding: 10px 35px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 30px;
-    color: black;
-    font-weight: bold;
-    box-shadow: 0 2px 4px 1px  rgba(25, 157, 60, 0.6) /* Sombra verde */
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="/assets/js/inventarioDeAlimentos.js"></script>
+</body>
+</html>
 
-  }
-  .btn-form:hover {
-    background-color: #f4cf50; /* Tonalidad más oscura */
-    color: black;
-  }
-  .btn-form:active {
-    background-color:var(--color-principal)!important;
-    color: white !important;
-    box-shadow: none !important;
-  }
-/*  seccion para impresion ordenada de los datos del formulario */
-  #printableSection {
-    font-family: Arial, sans-serif;
-    line-height: 1.5;
-    margin: 20px;
-  }
-
-  #printableSection h2 {
-    text-align: center;
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-
-  #printableSection p {
-    font-size: 16px;
-    margin: 10px 0;
-  }
-
-  #printableSection strong {
-    color: #333;
-  }
-
-  
-
-  @media screen and (max-width: 991px) {
-    body {
-      transform: scale(0.9); /* Escalar el contenido al 90% en pantallas pequeñas */
-      margin:0px; /* Elimina el margen en pantallas pequeñas */
-   
-    }
-    .form-container {
-      padding: 20px; /* Reduce el padding en pantallas pequeñas */
-    }
-    .input-group1{
-        gap: 10px;
-        margin-left: 5px;
-      }
-      .DivphotoCerda {
-      margin-left: 100px;
-    }}
