@@ -1,4 +1,36 @@
  // Objeto con las categorías y sus tipos relacionados
+
+document.getElementById('saveButton').addEventListener('click', () => {
+  const data = {
+    categoria: document.getElementById('categoria').value,
+    tipo: document.getElementById('tipo').value,
+    cantidad: document.getElementById('cantidad').value,
+    fechaEntrada: document.getElementById('fecha-entrada').value,
+    proveedor: document.getElementById('proveedor').value,
+    lote: document.getElementById('lote').value,
+    fechaVencimiento: document.getElementById('fecha-caducidad').value,
+    responsable: document.getElementById('responsable').value,
+  };
+
+  fetch('http://localhost:3000/api/inventario', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(response => {
+    alert(response.message);
+  })
+  .catch(error => {
+    alert('Error al guardar datos');
+    console.error(error);
+  });
+});
+
+
+
 const categoriasYTipos = {
   Energeticos: [
     "Granos y Cereales",
@@ -322,4 +354,29 @@ document.addEventListener('change', function (event) {
     // Guardar el archivo Excel
     XLSX.writeFile(workbook, 'Inventario_de_alimentos.xlsx');
   });
+
+  document.getElementById('saveButton').addEventListener('click', () => {
+  const rows = document.querySelectorAll('#userTable tbody tr');
+  const datos = [];
+
+  rows.forEach(row => {
+    const categoria = row.querySelector('[name="categoria"]')?.value;
+    const tipo = row.querySelector('[name="tipo"]')?.value;
+    const cantidad = row.querySelector('[name="cantidad"]')?.value;
+    const fechaEntrada = row.querySelector('[name="fecha-entrada"]')?.value;
+    const proveedor = row.querySelector('[name="proveedor"]')?.value;
+    const lote = row.querySelector('[name="lote"]')?.value;
+    const fechaVencimiento = row.querySelector('[name="fecha-caducidad"]')?.value;
+    const responsable = row.querySelector('[name="responsable"]')?.value;
+    const estado = row.querySelector('.estado-alimento')?.textContent;
+
+    if (categoria && tipo) { // Validación básica
+      datos.push({
+        categoria, tipo, cantidad, fechaEntrada,
+        proveedor, lote, fechaVencimiento, responsable, estado
+      });
+    }
+  });
+});
+
   

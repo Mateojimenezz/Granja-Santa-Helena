@@ -106,7 +106,10 @@
             <li class="nav-item"><a class="nav-link menu-link" target="iframe-content" data-title="Salud Animal" href="./SaludAnimal.html"> <i class="icon-left bi bi-heart-pulse d-lg-none"></i> Salud Animal</a></li>
             <li class="nav-item"><a class="nav-link menu-link" target="iframe-content" data-title="Salud Animal" href="./Ventas.html">  <i class="icon-left bi bi-cash d-lg-none"></i>Ventas</a></li>
           </ul> 
-          <button class="logout-button cerrar-sesion d-block d-md-none d-lg-none">Cerrar Sesión</button>        
+      <!--Aqui va el boton de mo il-->
+              <!-- Botón para pantallas pequeñas (opcional) -->
+        <button class="logout-button cerrar-sesion d-block d-md-none">Salir</button>
+
         </div>
         </div>
       </nav>
@@ -128,12 +131,8 @@
     <ul id="sisidebarMenu"  class="nav flex-column" >
     
     </ul>
-    <!-- Botón de cerrar sesión -->
-    <button class="logout-button cerrar-sesion">Cerrar Sesión</button>
-
-    <!-- Enlace al script de cierre de sesión -->
-    <script src="logout.js"></script>
-
+      <!-- Botón para cerrar sesión visible solo en pantallas md+ -->
+    <button onclick="location.href='/logout'" class="logout-button cerrar-sesion d-none d-md-block">Cerrar Sesión</button>
   </div>
   <main class="container-fluid  pt-5  mainContent">
     <iframe id="iframe-content" name="iframe-content" src="./introduccion.html" frameborder="0"></iframe>
@@ -146,7 +145,8 @@
   <script src="./assets/js/submenu.js"></script>
   <script src="./assets/js/menuHandler.js"></script>
   <script src="./assets/js/actualizarURL.js"></script>
- 
+     <!-- Enlace al script de cierre de sesión -->
+    <script src="./assets/js/logout.js"></script>
 </body>
 
 </html>
