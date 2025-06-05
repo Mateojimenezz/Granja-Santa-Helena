@@ -28,3 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+/* funcion para el boton regresar */
+function regresar() {
+    window.location.href = 'index.html'; // Cambia 'index.html' por la URL correcta
+}
