@@ -7,7 +7,8 @@ const bcrypt = require('bcryptjs');
 const db = require('./db');
 const { v4: uuidv4 } = require('uuid');
 const nodemailer = require('nodemailer');
-
+const multer = require('multer');
+const path = require('path');
 const app = express();
 
 // Middleware para parsear JSON
@@ -17,7 +18,7 @@ app.use(express.json());
 app.use(cors({
   origin: function(origin, callback) {
     if (!origin) return callback(null, true);
-    const allowedOrigins = ['http://localhost:5500', 'http://127.0.0.1:5500'];
+    const allowedOrigins = ['http://localhost:5500', 'http://127.0.0.1:5500','http://localhost'];
     if (!allowedOrigins.includes(origin)) {
       const msg = 'El CORS no está permitido para este origen.';
       return callback(new Error(msg), false);
@@ -26,6 +27,23 @@ app.use(cors({
   },
   credentials: true
 }));
+
+// Configuración de multer
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, 'assets/img')); // Carpeta donde se guardan las imágenes
+    },
+    filename: function (req, file, cb) {
+        const uniqueName = Date.now() + '-' + file.originalname;
+        cb(null, uniqueName);
+    }
+});
+
+const upload = multer({ storage: storage });
+
+// Servir carpeta de imágenes como pública
+app.use("/uploads", express.static(path.join(__dirname, "assets/img")));
+
 
 // Configuración de sesiones
 app.use(session({
@@ -76,6 +94,51 @@ app.post('/api/usuarios', (req, res) => {
     });
   });
 });
+
+// Ruta para registrar granja
+app.post("/api/granjas", upload.single("imagen"), (req, res) => {
+    const { nombre } = req.body;
+    const imagen = req.file;
+
+    if (!nombre || !imagen) {
+        return res.status(400).json({ error: "Faltan datos" });
+    }
+
+    const rutaImagen = `/uploads/${imagen.filename}`;
+    const sql = "INSERT INTO granjas (nombre, imagen) VALUES (?, ?)";
+
+    db.query(sql, [nombre, rutaImagen], (err, result) => {
+        if (err) {
+            console.error("Error DB:", err);
+            return res.status(500).json({ error: "Error al guardar" });
+        }
+
+        res.status(200).json({ mensaje: "Granja registrada" });
+    });
+});
+
+// Ruta para obtener todas las granjas
+app.get("/api/granjas", (req, res) => {
+    const sql = "SELECT * FROM granjas";
+
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error("Error al obtener granjas:", err);
+            return res.status(500).json({ error: "Error al obtener las granjas" });
+        }
+
+        // Opcional: puedes agregarle la URL completa a la imagen si es necesario
+        const granjas = results.map(g => ({
+            ...g,
+            imagen: `http://localhost:3000${g.imagen}` // esto asume que estás sirviendo /uploads correctamente
+        }));
+
+        res.status(200).json(granjas);
+    });
+});
+
+
+
 
 // Login
 app.post('/api/login', (req, res) => {
@@ -257,6 +320,61 @@ app.post("/api/inventario", (req, res) => {
     }
     console.log("✅ Inserción exitosa:", result);
     res.status(200).json({ message: "Datos guardados correctamente.", filas_insertadas: result.affectedRows });
+  });
+});
+app.put("/api/inventario/:id", (req, res) => {
+  const id = req.params.id;
+  const {
+    categoria,
+    tipo,
+    cantidad,
+    fecha_entrada,
+    proveedor,
+    lote,
+    fecha_vencimiento,
+    responsable,
+    estado,
+  } = req.body;
+
+  if (
+    !categoria || !tipo || cantidad == null || !fecha_entrada ||
+    !proveedor || !lote || !fecha_vencimiento || !responsable || !estado
+  ) {
+    return res.status(400).json({ message: "Todos los campos son obligatorios para la actualización." });
+  }
+
+  const sql = `
+    UPDATE inventario_alimentos 
+    SET categoria = ?, tipo = ?, cantidad = ?, fecha_entrada = ?, proveedor = ?, lote = ?, 
+        fecha_vencimiento = ?, responsable = ?, estado = ?
+    WHERE id = ?
+  `;
+
+  const values = [
+    categoria,
+    tipo,
+    cantidad,
+    fecha_entrada,
+    proveedor,
+    lote,
+    fecha_vencimiento,
+    responsable,
+    estado,
+    id
+  ];
+
+  db.query(sql, values, (err, result) => {
+    if (err) {
+      console.error("❌ Error al actualizar datos:", err);
+      return res.status(500).json({ message: "Error al actualizar en la base de datos." });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Elemento no encontrado para actualizar." });
+    }
+
+    console.log("✅ Actualización exitosa:", result);
+    res.status(200).json({ message: "Elemento actualizado correctamente." });
   });
 });
 

@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Respuesta del servidor:", data);
       if (data.message === "Inicio de sesión exitoso") {
         localStorage.setItem("usuarioLogueado", "true");
-        window.location.href = "paginaDeInicio.html";
+        window.location.href = "seleccionarGranja.html";
       } else {
         alert(data.message);
       }

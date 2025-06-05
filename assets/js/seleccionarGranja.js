@@ -1,9 +1,9 @@
 // ✅ Mostrar vista previa de imagen antes de guardarla
-document.getElementById("imagen")?.addEventListener("change", function(event) {
-    const file = event.target.files[0]; 
+document.getElementById("imagen")?.addEventListener("change", function (event) {
+    const file = event.target.files[0];
     const reader = new FileReader();
 
-    reader.onload = function() {
+    reader.onload = function () {
         document.getElementById("preview").src = reader.result;
         document.getElementById("preview").style.display = "block";
     };
@@ -13,63 +13,75 @@ document.getElementById("imagen")?.addEventListener("change", function(event) {
     }
 });
 
-// ✅ Guardar nueva granja y redirigir a `seleccionarGranja.html`
-document.getElementById("form-granja")?.addEventListener("submit", function(event) {
+// ✅ Guardar nueva granja en el servidor y redirigir
+document.getElementById("form-granja")?.addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    const nombreGranja = document.getElementById("nombre").value;
-    const urlImagen = document.getElementById("preview").src;
+    const formData = new FormData(this);
 
-    if (nombreGranja && urlImagen) {
-        let granjas = JSON.parse(localStorage.getItem("granjas")) || [];
-        granjas.push({ nombre: nombreGranja, imagen: urlImagen });
-        localStorage.setItem("granjas", JSON.stringify(granjas));
+    try {
+        const response = await fetch("http://localhost:3000/api/granjas", {
+            method: "POST",
+            body: formData
+        });
 
-        alert("Granja agregada correctamente!");
+        const result = await response.json();
 
-        window.location.href = "seleccionarGranja.html"; // Redirigir
+        if (response.ok) {
+            alert("✅ Granja agregada correctamente.");
+            window.location.href = "seleccionarGranja.html";
+        } else {
+            alert("❌ Error al guardar la granja.");
+            console.error(result);
+        }
+    } catch (error) {
+        alert("❌ Error de conexión con el servidor.");
+        console.error(error);
     }
 });
 
-// ✅ Cargar las granjas guardadas en `seleccionarGranja.html`document.addEventListener("DOMContentLoaded", function() {
+// ✅ Cargar granjas desde la base de datos al cargar la página
+document.addEventListener("DOMContentLoaded", function () {
     const listaGranjas = document.getElementById("granjas-list");
     const botonContainer = document.getElementById("boton-container");
 
-    let granjas = JSON.parse(localStorage.getItem("granjas")) || [];
+    fetch("http://localhost:3000/api/granjas")
+        .then(response => response.json())
+        .then(granjas => {
+            if (granjas.length === 0) {
+                console.warn("No hay granjas registradas.");
+                return;
+            }
 
-    if (granjas.length === 0) {
-        console.warn("No hay granjas en el localStorage.");
-    }
+            granjas.forEach(granja => {
+                const nuevaGranja = document.createElement("div");
+                nuevaGranja.classList.add("col-md-3");
 
-    granjas.forEach(granja => {
-        const nuevaGranja = document.createElement("div");
-        nuevaGranja.classList.add("col-md-3");
+                nuevaGranja.innerHTML = `
+                    <div class="card granja-card">
+                        <img src="${granja.imagen}" class="card-img-top" alt="Imagen de ${granja.nombre}">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">${granja.nombre}</h5>
+                            <button class="btn btn-form" onclick="seleccionarGranja('${granja.nombre}')">Seleccionar</button>
+                        </div>
+                    </div>
+                `;
 
-        nuevaGranja.innerHTML = `
-            <div class="card granja-card">
-                <img src="${granja.imagen}" class="card-img-top" alt="Imagen de ${granja.nombre}">
-                <div class="card-body text-center">
-                    <h5 class="card-title">${granja.nombre}</h5>
-                    <button class="btn btn-form" onclick="seleccionarGranja('${granja.nombre}')">Seleccionar</button>
-                </div>
-            </div>
-        `;
+                listaGranjas.appendChild(nuevaGranja);
+            });
 
-        listaGranjas.appendChild(nuevaGranja);
-    });
+            // Mover el botón `+` al final
+            if (botonContainer) {
+                listaGranjas.appendChild(botonContainer);
+            }
+        })
+        .catch(error => {
+            console.error("❌ Error al obtener las granjas desde el servidor:", error);
+        });
+});
 
-    // 🌟 Mover el botón `+` al final de la última tarjeta agregada
-    listaGranjas.appendChild(botonContainer);
-
-
+// ✅ Seleccionar una granja y redirigir
 function seleccionarGranja(nombre) {
-    alert(`Has seleccionado la granja: ${nombre}`);
     localStorage.setItem("granjaSeleccionada", nombre);
-    window.location.href = "dashboard.html"; // Redirigir a la vista de la granja
-}
-
-// ✅ Guardar la granja seleccionada y redirigir a `paginaDeInicio.html`
-function seleccionarGranja(nombre) {
-    localStorage.setItem("granjaSeleccionada", nombre);
-    window.location.href = "paginaDeInicio.html"; // Redirigir a la página principal
+    window.location.href = "paginaDeInicio.html";
 }

@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("form-granja");
 
     if (!form) {
@@ -6,51 +6,51 @@ document.addEventListener("DOMContentLoaded", function() {
         return;
     }
 
-    document.getElementById("imagen").addEventListener("change", function(event) {
+    // Vista previa de la imagen
+    document.getElementById("imagen").addEventListener("change", function (event) {
         const file = event.target.files[0];
+        const preview = document.getElementById("preview");
 
         if (!file) {
-            alert("No se ha seleccionado ninguna imagen.");
+            preview.style.display = "none";
             return;
         }
 
         const reader = new FileReader();
-        reader.onload = function() {
-            document.getElementById("preview").src = reader.result;
-            document.getElementById("preview").style.display = "block";
+        reader.onload = function () {
+            preview.src = reader.result;
+            preview.style.display = "block";
         };
 
         reader.readAsDataURL(file);
     });
 
-    form.addEventListener("submit", function(event) {
+    // Envío del formulario al backend
+    form.addEventListener("submit", async function (event) {
         event.preventDefault();
 
-        const nombreGranja = document.getElementById("nombre").value;
-        const urlImagen = document.getElementById("preview").src;
-
-        if (!nombreGranja || !urlImagen || urlImagen === "") {
-            alert("Por favor, ingresa el nombre y sube una imagen válida.");
-            return;
-        }
-
-        let granjas = JSON.parse(localStorage.getItem("granjas")) || [];
-        granjas.push({ nombre: nombreGranja, imagen: urlImagen });
-
-        console.log("Guardando granjas en localStorage:", granjas);
+        const formData = new FormData(form);
 
         try {
-            localStorage.setItem("granjas", JSON.stringify(granjas));
-            console.log("Granja guardada correctamente.");
-        } catch (error) {
-            console.error("Error al guardar en localStorage:", error);
-            alert("Hubo un error al guardar la granja. Verifica que tu navegador permite almacenamiento.");
-            return;
-        }
+            const response = await fetch("http://localhost:3000/api/granjas", {
+                method: "POST",
+                body: formData
+            });
 
-        alert("Granja agregada correctamente!");
-        window.location.href = "seleccionarGranja.html";
+            const result = await response.json();
+
+            if (response.ok) {
+                alert("✅ Granja agregada correctamente.");
+                console.log("➡️ Redirigiendo a seleccionarGranja.html...");
+                window.location.href = "/seleccionarGranja.html";
+            } else {
+                console.error("❌ Error al guardar la granja:", result);
+                alert("❌ Error al guardar la granja.");
+            }
+
+        } catch (error) {
+            console.error("❌ Error al conectar con el servidor:", error);
+            alert("❌ No se pudo conectar con el servidor.");
+        }
     });
 });
-
-
