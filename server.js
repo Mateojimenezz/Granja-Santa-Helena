@@ -16,9 +16,9 @@ app.use(express.json());
 
 // Configuración CORS
 app.use(cors({
-  origin: function(origin, callback) {
+  origin: function (origin, callback) {
     if (!origin) return callback(null, true);
-    const allowedOrigins = ['http://localhost:5500', 'http://127.0.0.1:5500','http://localhost'];
+    const allowedOrigins = ['http://localhost:5500', 'http://127.0.0.1:5500', 'http://localhost'];
     if (!allowedOrigins.includes(origin)) {
       const msg = 'El CORS no está permitido para este origen.';
       return callback(new Error(msg), false);
@@ -30,13 +30,13 @@ app.use(cors({
 
 // Configuración de multer
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, 'assets/img')); // Carpeta donde se guardan las imágenes
-    },
-    filename: function (req, file, cb) {
-        const uniqueName = Date.now() + '-' + file.originalname;
-        cb(null, uniqueName);
-    }
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, 'assets/img')); // Carpeta donde se guardan las imágenes
+  },
+  filename: function (req, file, cb) {
+    const uniqueName = Date.now() + '-' + file.originalname;
+    cb(null, uniqueName);
+  }
 });
 
 const upload = multer({ storage: storage });
@@ -45,14 +45,15 @@ const upload = multer({ storage: storage });
 app.use("/uploads", express.static(path.join(__dirname, "assets/img")));
 
 
-// Configuración de sesiones
+// Middleware para configurar sesión
 app.use(session({
-  secret: 'mi_clave_secreta', 
+  secret: 'mi_clave_secreta',
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: false,   // En producción usa true con HTTPS
-    sameSite: 'lax'  // Ajusta según tus necesidades
+    maxAge: 3600000, // 1 hora en milisegundos
+    secure: false,   // en producción, usa true si usas HTTPS
+    sameSite: 'lax'
   }
 }));
 
@@ -95,50 +96,29 @@ app.post('/api/usuarios', (req, res) => {
   });
 });
 
-// Ruta para registrar granja
-app.post("/api/granjas", upload.single("imagen"), (req, res) => {
-    const { nombre } = req.body;
-    const imagen = req.file;
-
-    if (!nombre || !imagen) {
-        return res.status(400).json({ error: "Faltan datos" });
-    }
-
-    const rutaImagen = `/uploads/${imagen.filename}`;
-    const sql = "INSERT INTO granjas (nombre, imagen) VALUES (?, ?)";
-
-    db.query(sql, [nombre, rutaImagen], (err, result) => {
-        if (err) {
-            console.error("Error DB:", err);
-            return res.status(500).json({ error: "Error al guardar" });
-        }
-
-        res.status(200).json({ mensaje: "Granja registrada" });
+// Middleware para verificar sesión y permisos de administrador
+function verificarSesion(req, res, next) {
+  if (req.session && req.session.usuario && req.session.usuario.permiso === 'Administrador') {
+    next(); // Autorizado
+  } else {
+    res.status(403).json({ mensaje: 'No autorizado' });
+  }
+}
+// Ruta para validar si hay sesión activa
+app.get('/api/sesion', (req, res) => {
+  if (req.session && req.session.email) {
+    res.status(200).json({
+      sesionActiva: true,
+      usuario: {
+        email: req.session.email,
+        cargo: req.session.cargo,
+        permiso: req.session.permiso
+      }
     });
+  } else {
+    res.status(401).json({ sesionActiva: false });
+  }
 });
-
-// Ruta para obtener todas las granjas
-app.get("/api/granjas", (req, res) => {
-    const sql = "SELECT * FROM granjas";
-
-    db.query(sql, (err, results) => {
-        if (err) {
-            console.error("Error al obtener granjas:", err);
-            return res.status(500).json({ error: "Error al obtener las granjas" });
-        }
-
-        // Opcional: puedes agregarle la URL completa a la imagen si es necesario
-        const granjas = results.map(g => ({
-            ...g,
-            imagen: `http://localhost:3000${g.imagen}` // esto asume que estás sirviendo /uploads correctamente
-        }));
-
-        res.status(200).json(granjas);
-    });
-});
-
-
-
 
 // Login
 app.post('/api/login', (req, res) => {
@@ -177,13 +157,24 @@ app.post('/api/login', (req, res) => {
 
       console.log('✅ Usuario autenticado:', { Usuario: user.Nombre, Id: user.Identificacion });
 
-      // Guardar info en la sesión
-      req.session.userId = user.id;
-      req.session.email = user.email;
+      // ✅ Guardar toda la info bajo session.usuario
+      req.session.usuario = {
+        id: user.id,
+        email: user.email,
+        nombre: user.nombre,
+        cargo: user.cargo,
+        permiso: user.permiso
+      };
 
-      res.status(200).json({ 
-        message: 'Inicio de sesión exitoso', 
-        user: { id: user.id, nombre: user.nombre, email: user.email } 
+      res.status(200).json({
+        message: 'Inicio de sesión exitoso',
+        user: {
+          id: user.id,
+          nombre: user.nombre,
+          email: user.email,
+          cargo: user.cargo,
+          permiso: user.permiso
+        }
       });
     });
   });
@@ -191,16 +182,19 @@ app.post('/api/login', (req, res) => {
 
 
 // Ruta para cerrar sesión
-app.get('/logout', (req, res) => {
+app.post('/api/logout', (req, res) => {
   req.session.destroy(err => {
     if (err) {
-      console.error('Error al cerrar sesión:', err);
-      return res.status(500).send('No se pudo cerrar sesión');
+      console.error('❌ Error al cerrar sesión:', err);
+      return res.status(500).json({ message: 'Error al cerrar sesión' });
     }
-    res.clearCookie("connect.sid"); 
-    res.redirect("/login.html");  // Ajusta si es necesario
+    console.log('✅ Sesión cerrada exitosamente');
+    res.clearCookie('connect.sid'); // limpia la cookie de sesión
+    res.set('Cache-Control', 'no-store');
+    res.status(200).json({ message: 'Sesión cerrada exitosamente' });
   });
 });
+
 
 // Ruta para recuperar contraseña
 app.post('/api/recuperar', (req, res) => {
@@ -259,6 +253,49 @@ app.post('/api/recuperar', (req, res) => {
     });
   });
 });
+
+// Ruta para registrar granja
+app.post("/api/granjas", upload.single("imagen"), (req, res) => {
+  const { nombre } = req.body;
+  const imagen = req.file;
+
+  if (!nombre || !imagen) {
+    return res.status(400).json({ error: "Faltan datos" });
+  }
+
+  const rutaImagen = `/uploads/${imagen.filename}`;
+  const sql = "INSERT INTO granjas (nombre, imagen) VALUES (?, ?)";
+
+  db.query(sql, [nombre, rutaImagen], (err, result) => {
+    if (err) {
+      console.error("Error DB:", err);
+      return res.status(500).json({ error: "Error al guardar" });
+    }
+
+    res.status(200).json({ mensaje: "Granja registrada" });
+  });
+});
+
+// Ruta para obtener todas las granjas
+app.get("/api/granjas", (req, res) => {
+  const sql = "SELECT * FROM granjas";
+
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error("Error al obtener granjas:", err);
+      return res.status(500).json({ error: "Error al obtener las granjas" });
+    }
+
+    // Opcional: puedes agregarle la URL completa a la imagen si es necesario
+    const granjas = results.map(g => ({
+      ...g,
+      imagen: `http://localhost:3000${g.imagen}` // esto asume que estás sirviendo /uploads correctamente
+    }));
+
+    res.status(200).json(granjas);
+  });
+});
+
 
 // Ruta para guardar datos del inventario de alimentos;
 
@@ -322,6 +359,8 @@ app.post("/api/inventario", (req, res) => {
     res.status(200).json({ message: "Datos guardados correctamente.", filas_insertadas: result.affectedRows });
   });
 });
+
+
 app.put("/api/inventario/:id", (req, res) => {
   const id = req.params.id;
   const {
@@ -376,6 +415,31 @@ app.put("/api/inventario/:id", (req, res) => {
     console.log("✅ Actualización exitosa:", result);
     res.status(200).json({ message: "Elemento actualizado correctamente." });
   });
+});
+
+// Middleware para verificar si el usuario es administrador
+function verificarAdministrador(req, res, next) {
+  console.log('Sesión actual:', req.session);
+
+  if (!req.session || !req.session.usuario || req.session.usuario.permiso !== 'permitido') {
+    return res.status(403).json({ mensaje: 'Acceso denegado: no tienes permiso' });
+  }
+  next();
+}
+
+
+// Ruta protegida para obtener todos los usuarios
+app.get('/api/usuarios', verificarAdministrador, (req, res) => {
+  db.query(
+    'SELECT id, nombre, identificacion, email, telefono, cargo, permiso FROM usuarios',
+    (err, results) => {
+      if (err) {
+        console.error('❌ Error al obtener usuarios:', err);
+        return res.status(500).json({ message: 'Error al obtener usuarios' });
+      }
+      res.json(results); // Devuelve el array de usuarios
+    }
+  );
 });
 
 

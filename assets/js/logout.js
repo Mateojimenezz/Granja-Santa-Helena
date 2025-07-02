@@ -1,13 +1,16 @@
 document.querySelectorAll(".cerrar-sesion").forEach(button => {
   button.addEventListener("click", () => {
-    // Elimina el indicador de usuario logueado
-    localStorage.removeItem("usuarioLogueado");
-    // Redirige a la página de login
-    window.location.href = "login.html";  // Ajusta la ruta si tu archivo login está en otro lugar
+    fetch("http://localhost:3000/api/logout", {
+      method: "POST",
+      credentials: "include"
+    })
+      .then(() => {
+        localStorage.clear(); // Limpia todo
+        window.location.href = "login.html";
+      })
+      .catch(error => {
+        console.error("Error cerrando sesión:", error);
+        window.location.href = "login.html";
+      });
   });
-});
-document.addEventListener("DOMContentLoaded", () => {
-  if (!localStorage.getItem("usuarioLogueado")) {
-    window.location.href = "login.html";
-  }
 });
