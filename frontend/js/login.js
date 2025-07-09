@@ -11,24 +11,24 @@ document.addEventListener("DOMContentLoaded", function () {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
-      credentials: "include"
+      credentials: "include" 
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Respuesta del servidor:", data);
-        if (data.message === "Inicio de sesión exitoso") {
-          localStorage.setItem("usuarioLogueado", "true");
-          localStorage.setItem("cargo", data.user.cargo);
-         setTimeout(() => {
-              window.location.href = "seleccionarGranja.html";
-            }, 300); 
-
-        } else {
-          alert(data.message);
-        }
-      })
-      .catch(error => {
-        alert("Error en la solicitud: " + error.message);
-      });
+    .then(response => response.json())
+    .then(data => {
+      console.log("Respuesta del servidor:", data);
+      if (data.message === "Inicio de sesión exitoso") {
+        localStorage.setItem("usuarioLogueado", "true");
+        window.location.href = "seleccionarGranja.html";
+      } else {
+        alert(data.message);
+      }
+    })
+    .catch(error => {
+      alert("Error en la solicitud: " + error.message);
+    });
   });
 });
+/* funcion para el boton regresar */
+function regresar() {
+    window.location.href = 'index.html'; // Cambia 'index.html' por la URL correcta
+}
