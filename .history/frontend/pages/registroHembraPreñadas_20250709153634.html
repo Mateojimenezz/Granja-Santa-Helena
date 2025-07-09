@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Cerdas Preñadas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="../css/registroHembraPreñadas.css">
+ lin
+
+</head>
+<body>
+  <div class="container my-5">
+    <h2 class="text-center">Registro de Cerdas</h2>
+    <div class="row" id="cerdas-container">
+      <!-- Tarjeta de ejemplo -->
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="../img/images.jpg" class="card-img-top" alt="Cerda">
+          <div class="card-body text-center">
+            <h5 class="card-title">ID: M-001</h5>
+            <p class="card-text">Jaula: 34</p>
+            <button class="btn btn-form btn-sm" onclick="verMas('M-001')">Ver Más</button>
+          </div>
+        </div>
+      </div>
+      <!-- Más tarjetas dinámicas -->
+    </div>
+
+    <!-- Botón para añadir nueva cerda -->
+    <button class="add-button" onclick="abrirFormulario()">
+        <i class="bi bi-piggy-bank"></i><i class="bi bi-plus"></i>
+      </button>
+  </div>
+
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="../js/registroHembraPreñada.js"></script>
+</body>
+</html>
