@@ -1,8 +1,9 @@
-// db.js
+// backend/config/db.js
+// Este archivo configura la conexión a la base de datos MySQL utilizando variables de entorno.
 const dotenv = require('dotenv');
 dotenv.config();
 
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 console.log('DB_HOST:', process.env.DB_HOST);
 console.log('DB_USER:', process.env.DB_USER);
