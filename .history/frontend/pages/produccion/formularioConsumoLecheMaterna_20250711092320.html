@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consumo De Leche Materna</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="//css/formularioGestionProduccion.css">
+ 
+</head>
+<body>
+    <div class="form-container my-5">
+        <h3 class="text-center mb-4">Consumo de Leche Materna</h3>
+        <form id="lecheMaternaForm">
+          <!-- Primera fila: Fecha, ID, Peso y Jaula -->
+          <div class="row mb-3">
+            <div class="col-md-3">
+              <label for="fechaConsumo" class="form-label">Fecha</label>
+              <input type="date" class="form-control" id="fechaConsumo" name="fechaConsumo" required>
+            </div>
+            <div class="col-md-3">
+              <label for="idAnimal" class="form-label">ID</label>
+              <input type="text" class="form-control" id="idAnimal" name="idAnimal" required>
+            </div>
+            <div class="col-md-3">
+              <label for="pesoAnimal" class="form-label">Peso</label>
+              <input type="text" class="form-control" id="pesoAnimal" name="pesoAnimal" required>
+            </div>
+            <div class="col-md-3">
+              <label for="jaulaAnimal" class="form-label">Jaula N°</label>
+              <input type="text" class="form-control" id="jaulaAnimal" name="jaulaAnimal" required>
+            </div>
+          </div>
+      
+          <!-- Segunda fila: ID de la madre -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="idMadre" class="form-label">ID de la Madre</label>
+              <input type="text" class="form-control" id="idMadre" name="idMadre" required>
+            </div>
+            <div class="col-md-6">
+              <label for="cantidadLeche" class="form-label">Cantidad Consumida de Leche</label>
+              <input type="text" class="form-control" id="cantidadLeche" name="cantidadLeche" required>
+            </div>
+          </div>
+      
+          <!-- Tercera fila: Observaciones -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label for="observaciones" class="form-label">Observaciones</label>
+              <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
+            </div>
+          </div>
+      
+          <!-- Botones -->
+          <div class="text-center">
+            <button type="button" class="btn btn-form me-2" onclick="imprimirFormularioLeche()">Imprimir</button>
+            <button type="submit" class="btn btn-form">Guardar</button>
+          </div>
+        </form>
+      
+        <!-- Sección para vista de impresión -->
+        <div id="printableLeche" style="display: none;">
+          <h2 class="text-center">Consumo de Leche Materna</h2>
+          <br>
+          <p><strong>Fecha:</strong> <span id="printFechaConsumo"></span></p>
+          <p><strong>ID:</strong> <span id="printIdAnimal"></span></p>
+          <p><strong>Peso:</strong> <span id="printPesoAnimal"></span></p>
+          <p><strong>Jaula N°:</strong> <span id="printJaulaAnimal"></span></p>
+          <p><strong>ID de la Madre:</strong> <span id="printIdMadre"></span></p>
+          <p><strong>Cantidad Consumida de Leche:</strong> <span id="printCantidadLeche"></span></p>
+          <p><strong>Observaciones:</strong> <span id="printObservaciones"></span></p>
+        </div>
+      </div>
+      
+   
+      
+    
+      
+      
+      
+      
+
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/formularioConsumoLecheMaterna.js"></script>
+  
+ 
+</body>
+</html>

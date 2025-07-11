@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Registro de Partos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/frontend/css/formularioGestionProduccion.css">
+ 
+</head>
+<body>
+    <div class="form-container my-5">
+        <h3 class="text-center mb-4">Registro de Parto</h3>
+        <form id="partoForm">
+          <!-- Primera fila: Fecha, ID, Peso y Jaula -->
+          <div class="row mb-3">
+            <div class="col-md-3">
+              <label for="fechaParto" class="form-label">Fecha del Parto</label>
+              <input type="date" class="form-control" id="fechaParto" name="fechaParto" required>
+            </div>
+            <div class="col-md-3">
+              <label for="idCerda" class="form-label">ID</label>
+              <input type="text" class="form-control" id="idCerda" name="idCerda" required>
+            </div>
+            <div class="col-md-3">
+              <label for="pesoCerda" class="form-label">Peso</label>
+              <input type="text" class="form-control" id="pesoCerda" name="pesoCerda" required>
+            </div>
+            <div class="col-md-3">
+              <label for="jaulaCerda" class="form-label">Jaula N°</label>
+              <input type="text" class="form-control" id="jaulaCerda" name="jaulaCerda" required>
+            </div>
+          </div>
+      
+          <!-- Segunda fila: Número de lechones -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="lechonesVivos" class="form-label">Número de Lechones Nacidos Vivos</label>
+              <input type="number" class="form-control" id="lechonesVivos" name="lechonesVivos" required>
+            </div>
+            <div class="col-md-6">
+              <label for="lechonesMuertos" class="form-label">Número de Lechones Nacidos Muertos</label>
+              <input type="number" class="form-control" id="lechonesMuertos" name="lechonesMuertos" required>
+            </div>
+          </div>
+      
+          <!-- Tercera fila: Peso de lechones vivos -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label for="pesoLechonesVivos" class="form-label">Peso de los Lechones Nacidos Vivos</label>
+              <textarea class="form-control" id="pesoLechonesVivos" name="pesoLechonesVivos" rows="3" placeholder="Ejemplo: 1: 1L; 2: 1/2L; 3: 2L; ..." required></textarea>
+            </div>
+          </div>
+      
+          <!-- Cuarta fila: Condiciones de salud -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label for="condicionesSalud" class="form-label">Condiciones de Salud de la Hembra Después del Parto</label>
+              <textarea class="form-control" id="condicionesSalud" name="condicionesSalud" rows="3" required></textarea>
+            </div>
+          </div>
+      
+          <!-- Quinta fila: Observaciones -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label for="observaciones" class="form-label">Observaciones</label>
+              <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
+            </div>
+          </div>
+      
+          <!-- Botones -->
+          <div class="text-center">
+            <button type="button" class="btn btn-form me-2" onclick="imprimirFormularioParto()">Imprimir</button>
+            <button type="submit" class="btn btn-form">Guardar</button>
+          </div>
+        </form>
+          <!-- Sección para vista de impresión -->
+        <div id="printableParto" style="display: none;">
+            <h2 class="text-center">Registro de Parto</h2>
+            <br>
+            <p><strong>Fecha del Parto:</strong> <span id="printFechaParto"></span></p>
+            <p><strong>ID:</strong> <span id="printIdCerda"></span></p>
+            <p><strong>Peso:</strong> <span id="printPesoCerda"></span></p>
+            <p><strong>Jaula N°:</strong> <span id="printJaulaCerda"></span></p>
+            <p><strong>Lechones Nacidos Vivos:</strong> <span id="printLechonesVivos"></span></p>
+            <p><strong>Lechones Nacidos Muertos:</strong> <span id="printLechonesMuertos"></span></p>
+            <p><strong>Peso de Lechones Vivos:</strong> <span id="printPesoLechonesVivos"></span></p>
+            <p><strong>Salud de la Hembra:</strong> <span id="printCondicionesSalud"></span></p>
+            <p><strong>Observaciones:</strong> <span id="printObservaciones"></span></p>
+        </div>
+      </div>
+      
+      
+      
+      
+
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="//js/formularoRegistroDeParto.js"></script>
+  
+ 
+</body>
+</html>
