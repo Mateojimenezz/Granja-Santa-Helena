@@ -45,36 +45,36 @@ document.addEventListener("DOMContentLoaded", function () {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
         })
-        .then(response => {
-            if (!response.ok) {
-                return response.text().then(text => { throw new Error(text) });
-            }
-        
-            // Alerta bonita con SweetAlert2
-            Swal.fire({
-                title: '¡Usuario registrado!',
-                text: '¿Desea ir a la página de inicio de sesión?',
-                icon: 'success',
-                showCancelButton: true,
-                confirmButtonText: 'Sí, ir ahora',
-                cancelButtonText: 'No, más tarde'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = '/login.html'; // Ajusta esta ruta según corresponda
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => { throw new Error(text) });
                 }
+
+                // Alerta bonita con SweetAlert2
+                Swal.fire({
+                    title: '¡Usuario registrado!',
+                    text: '¿Desea ir a la página de inicio de sesión?',
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, ir ahora',
+                    cancelButtonText: 'No, más tarde'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'login.html'; // Ajusta esta ruta según corresponda
+                    }
+                });
+
+                form.reset();
+            })
+            .catch(error => {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'No se pudo registrar el usuario: ' + error.message,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
             });
-        
-            form.reset();
-        })
-        .catch(error => {
-            Swal.fire({
-                title: 'Error',
-                text: 'No se pudo registrar el usuario: ' + error.message,
-                icon: 'error',
-                confirmButtonText: 'OK'
-            });
-        });
-             
+
     });
 
     function validateEmail(email) {

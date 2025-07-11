@@ -20,7 +20,7 @@ document.getElementById("form-granja")?.addEventListener("submit", async functio
     const formData = new FormData(this);
 
     try {
-        const response = await fetch("http://localhost:3000/api/granjas", {
+        const response = await fetch("http://localhost:3000/api/usuarios/granjas", {
             method: "POST",
             body: formData
         });
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const listaGranjas = document.getElementById("granjas-list");
     const botonContainer = document.getElementById("boton-container");
 
-    fetch("http://localhost:3000/api/granjas")
+    fetch("http://localhost:3000/api/usuarios/granjas")
         .then(response => response.json())
         .then(granjas => {
             if (granjas.length === 0) {

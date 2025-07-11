@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const formData = new FormData(form);
 
         try {
-            const response = await fetch("http://localhost:3000/api/granjas", {
+            const response = await fetch("http://localhost:3000/api/usuarios/granjas", {
                 method: "POST",
                 body: formData
             });
