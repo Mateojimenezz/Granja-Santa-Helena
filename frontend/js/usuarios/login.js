@@ -7,28 +7,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
 
-    // ✅ Validación básica antes del fetch
     if (!email || !password) {
       Swal.fire({
-        icon: "warning",
-        title: "Campos incompletos",
-        text: "Por favor, completa todos los campos."
+        title: 'Campos incompletos',
+        text: 'Por favor, completa todos los campos.',
+        icon: 'warning',
+        confirmButtonText: 'OK'
       });
       return;
     }
 
-    // ✅ Validación de formato de correo
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       Swal.fire({
-        icon: "error",
-        title: "Correo inválido",
-        text: "Ingrese un correo electrónico válido."
+        title: 'Correo inválido',
+        text: 'Ingrese un correo electrónico válido.',
+        icon: 'error',
+        confirmButtonText: 'OK'
       });
       return;
     }
 
-    // 🟢 Petición al backend
     fetch("http://localhost:3000/api/usuarios/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -37,38 +36,44 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then(async response => {
         const data = await response.json();
+        console.log("🧪 DATA RECIBIDA:", data);
+        console.log("🧪 USUARIO RECIBIDO:", data.user);
+
         if (!response.ok) throw new Error(data.message || "Error en el servidor");
 
-        if (data.message === "Inicio de sesión exitoso") {
+        if (data.user && data.user.id) {
+          console.log("✅ BLOQUE DE REDIRECCIÓN EJECUTADO");
+          localStorage.setItem("usuario", JSON.stringify(data.user));
+          localStorage.setItem("usuarioLogueado", "true");
+
+          // ✅ Alerta bonita de inicio exitoso
           Swal.fire({
-            icon: "success",
-            title: "Bienvenido",
-            text: "Has iniciado sesión correctamente.",
-            showConfirmButton: false,
-            timer: 2000
+            title: '¡Bienvenido!',
+            text: 'Inicio de sesión exitoso',
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false
           }).then(() => {
-            localStorage.setItem("usuarioLogueado", "true");
             window.location.href = "seleccionarGranja.html";
           });
+
         } else {
+          console.log("❌ BLOQUE DE REDIRECCIÓN NO EJECUTADO");
           Swal.fire({
-            icon: "info",
-            title: "Inicio de sesión fallido",
-            text: data.message
+            title: 'Error',
+            text: '⚠️ Datos de usuario incompletos. Intenta nuevamente.',
+            icon: 'error',
+            confirmButtonText: 'OK'
           });
         }
       })
       .catch(error => {
         Swal.fire({
-          icon: "error",
-          title: "Error de red",
-          text: "No se pudo conectar con el servidor: " + error.message
+          title: 'Error',
+          text: '❌ ' + error.message,
+          icon: 'error',
+          confirmButtonText: 'OK'
         });
       });
   });
 });
-
-/* función para el botón regresar */
-function regresar() {
-  window.location.href = "/frontend/index.html";
-}

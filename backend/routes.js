@@ -2,9 +2,8 @@
 const express = require('express');
 const router = express.Router();
 
-// Importar rutas de módulos
+// Rutas de módulos
 router.use('/usuarios', require('./modules/usuarios/usuarios.routes'));
-
-// Aquí irán los demás: inventarios, salud, etc.
+router.use('/granjas', require('./modules/usuarios/granjas.routes'));
 
 module.exports = router;

@@ -2,9 +2,16 @@
 const express = require('express');
 const router = express.Router();
 const granjasController = require('./granjas.controller');
+const upload = require('../../utils/multer');
+const verificarAutenticado = require('../../middleware/verificarAutenticado'); 
 
-router.get('/', granjasController.obtenerGranjas); // GET /api/usuarios/granjas
-router.get('/:usuarioId', granjasController.obtenerGranjasPorUsuario); // GET /api/usuarios/granjas/:usuarioId
-router.post('/', granjasController.crearGranja); // POST /api/usuarios/granjas
+// GET todas las granjas
+router.get('/', granjasController.obtenerGranjas);
+
+// GET granjas por usuario
+router.get('/:usuarioId', granjasController.obtenerGranjasPorUsuario);
+
+// POST crear granja (protegido + subida de imagen)
+router.post('/', verificarAutenticado, upload.single('imagen'), granjasController.crearGranja);
 
 module.exports = router;

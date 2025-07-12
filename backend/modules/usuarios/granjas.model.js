@@ -2,6 +2,7 @@
 const db = require('../../config/db');
 
 const Granja = {
+     // Obtener todas las granjas
      obtenerTodas: () => {
           return new Promise((resolve, reject) => {
                db.query('SELECT * FROM granjas', (err, results) => {
@@ -11,23 +12,29 @@ const Granja = {
           });
      },
 
+     // Obtener granjas por el ID del usuario
      obtenerPorUsuarioId: (usuarioId) => {
           return new Promise((resolve, reject) => {
-               db.query('SELECT * FROM granjas WHERE usuario_id = ?', [usuarioId], (err, results) => {
-                    if (err) return reject(err);
-                    resolve(results);
-               });
+               db.query(
+                    'SELECT * FROM granjas WHERE id_usuario = ?',
+                    [usuarioId],
+                    (err, results) => {
+                         if (err) return reject(err);
+                         resolve(results);
+                    }
+               );
           });
      },
 
-     crear: ({ nombre, ubicacion, usuario_id }) => {
+     // Crear nueva granja
+     crear: ({ nombre, imagen, id_usuario }) => {
           return new Promise((resolve, reject) => {
                db.query(
-                    'INSERT INTO granjas (nombre, ubicacion, usuario_id) VALUES (?, ?, ?)',
-                    [nombre, ubicacion, usuario_id],
+                    'INSERT INTO granjas (nombre, imagen, id_usuario) VALUES (?, ?, ?)',
+                    [nombre, imagen, id_usuario],
                     (err, result) => {
                          if (err) return reject(err);
-                         resolve({ id: result.insertId, nombre, ubicacion, usuario_id });
+                         resolve({ id: result.insertId, nombre, imagen, id_usuario });
                     }
                );
           });

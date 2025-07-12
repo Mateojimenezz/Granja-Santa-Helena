@@ -36,20 +36,24 @@ const login = async (req, res) => {
           const match = await bcrypt.compare(password, user.contrasena);
           if (!match) return res.status(400).json({ message: 'Correo o contraseña incorrectos' });
 
-          req.session.usuario = {
-               id: user.id,
-               email: user.email,
-               nombre: user.nombre,
-               cargo: user.cargo,
-               permiso: user.permiso,
+          // ✅ Aquí ajustamos los campos correctamente
+          const datosUsuario = {
+               id: user.ID,
+               email: user.Email,
+               nombre: user.Nombre,
+               cargo: user.Cargo,
+               permiso: user.permiso
           };
 
-          res.status(200).json({ message: 'Inicio de sesión exitoso', user: req.session.usuario });
+          req.session.usuario = datosUsuario;
+
+          res.status(200).json({ message: 'Inicio de sesión exitoso', user: datosUsuario });
      } catch (err) {
           console.error('Error login:', err);
           res.status(500).json({ message: 'Error en el servidor' });
      }
 };
+
 
 // Validar sesión
 const validarSesion = (req, res) => {

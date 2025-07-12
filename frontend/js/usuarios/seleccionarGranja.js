@@ -1,51 +1,13 @@
-// ✅ Mostrar vista previa de imagen antes de guardarla
-document.getElementById("imagen")?.addEventListener("change", function (event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = function () {
-        document.getElementById("preview").src = reader.result;
-        document.getElementById("preview").style.display = "block";
-    };
-
-    if (file) {
-        reader.readAsDataURL(file);
-    }
-});
-
-// ✅ Guardar nueva granja en el servidor y redirigir
-document.getElementById("form-granja")?.addEventListener("submit", async function (event) {
-    event.preventDefault();
-
-    const formData = new FormData(this);
-
-    try {
-        const response = await fetch("http://localhost:3000/api/usuarios/granjas", {
-            method: "POST",
-            body: formData
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-            alert("✅ Granja agregada correctamente.");
-            window.location.href = "seleccionarGranja.html";
-        } else {
-            alert("❌ Error al guardar la granja.");
-            console.error(result);
-        }
-    } catch (error) {
-        alert("❌ Error de conexión con el servidor.");
-        console.error(error);
-    }
-});
+// Seleccionar Granja - frontend/js/usuarios/seleccionarGranja.js
 
 // ✅ Cargar granjas desde la base de datos al cargar la página
 document.addEventListener("DOMContentLoaded", function () {
     const listaGranjas = document.getElementById("granjas-list");
     const botonContainer = document.getElementById("boton-container");
 
-    fetch("http://localhost:3000/api/usuarios/granjas")
+    fetch("http://localhost:3000/api/usuarios/granjas", {
+        credentials: "include" // ✅ importante si usas sesiones
+    })
         .then(response => response.json())
         .then(granjas => {
             if (granjas.length === 0) {
