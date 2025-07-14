@@ -36,6 +36,11 @@ const login = async (req, res) => {
           const match = await bcrypt.compare(password, user.contrasena);
           if (!match) return res.status(400).json({ message: 'Correo o contraseña incorrectos' });
 
+          // 🚫 Validar permiso
+          if (user.permiso !== 'Permitido') {
+               return res.status(403).json({ message: 'Acceso denegado. Usuario no autorizado.' });
+          }
+
           // ✅ Aquí ajustamos los campos correctamente
           const datosUsuario = {
                id: user.ID,
@@ -53,7 +58,6 @@ const login = async (req, res) => {
           res.status(500).json({ message: 'Error en el servidor' });
      }
 };
-
 
 // Validar sesión
 const validarSesion = (req, res) => {
