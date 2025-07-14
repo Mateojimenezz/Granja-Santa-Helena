@@ -20,8 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const identification = document.getElementById("identificacion").value.trim();
         const email = document.getElementById("email").value.trim();
         const phone = document.getElementById("telefono").value.trim();
-        const role = document.getElementById("cargo").value.trim();
+        const role = "Sin asignar"; // 👈 Lo agregas fijo aquí
         const password = passwordInput.value.trim();
+
 
         if (!name || !identification || !email || !phone || !role || !password) {
             alert("Por favor, complete todos los campos.");

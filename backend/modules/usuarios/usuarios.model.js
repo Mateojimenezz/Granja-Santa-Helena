@@ -14,20 +14,21 @@ const buscarPorEmail = (email) => {
 };
 
 // Crear nuevo usuario
-const crearUsuario = async ({ name, identification, email, phone, role, password }) => {
+const crearUsuario = async ({ name, identification, email, phone, cargo, password, permiso }) => {
      const hashedPassword = await bcrypt.hash(password, 10);
 
      return new Promise((resolve, reject) => {
           const query = `
-      INSERT INTO usuarios (nombre, identificacion, email, telefono, cargo, contrasena)
-      VALUES (?, ?, ?, ?, ?, ?)
-    `;
-          db.query(query, [name, identification, email, phone, role, hashedPassword], (err, result) => {
+            INSERT INTO usuarios (nombre, identificacion, email, telefono, cargo, contrasena, permiso)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        `;
+          db.query(query, [name, identification, email, phone, cargo, hashedPassword, permiso], (err, result) => {
                if (err) return reject(err);
                resolve(result.insertId);
           });
      });
 };
+
 
 // Verificar si ya existe usuario
 const usuarioExiste = (identification, email) => {
@@ -52,10 +53,25 @@ const obtenerUsuarios = () => {
      });
 };
 
+// Actualizar cargo y permiso
+const actualizarUsuario = (id, cargo, permiso) => {
+     return new Promise((resolve, reject) => {
+          const query = `
+               UPDATE usuarios 
+               SET cargo = ?, permiso = ? 
+               WHERE id = ?
+          `;
+          db.query(query, [cargo, permiso, id], (err, result) => {
+               if (err) return reject(err);
+               resolve(result);
+          });
+     });
+};
+
 module.exports = {
      buscarPorEmail,
      crearUsuario,
      usuarioExiste,
      obtenerUsuarios,
+     actualizarUsuario
 };
-

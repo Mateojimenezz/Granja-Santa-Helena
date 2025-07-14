@@ -4,9 +4,9 @@ const bcrypt = require('bcryptjs');
 
 // Registro de usuario
 const registrarUsuario = async (req, res) => {
-     const { name, identification, email, phone, role, password } = req.body;
+     const { name, identification, email, phone, password } = req.body;
 
-     if (!name || !identification || !email || !phone || !role || !password) {
+     if (!name || !identification || !email || !phone || !password) {
           return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
      }
 
@@ -16,13 +16,18 @@ const registrarUsuario = async (req, res) => {
                return res.status(400).json({ message: 'El usuario ya existe' });
           }
 
-          await model.crearUsuario({ name, identification, email, phone, role, password });
+          // 🚫 Asignación forzada desde el backend
+          const cargo = 'Usuario';
+          const permiso = 'Denegado';
+
+          await model.crearUsuario({ name, identification, email, phone, cargo, password, permiso });
           res.status(201).json({ message: 'Usuario registrado correctamente' });
      } catch (err) {
           console.error('Error registro:', err);
           res.status(500).json({ message: 'Error en el registro' });
      }
 };
+
 
 // Login
 const login = async (req, res) => {
@@ -76,8 +81,14 @@ const logout = (req, res) => {
      });
 };
 
-// Obtener usuarios (protegida)
+// Obtener usuarios (protegida solo para administradores con permiso)
 const listarUsuarios = async (req, res) => {
+     const usuario = req.session.usuario;
+
+     if (!usuario || usuario.cargo !== 'Administrador' || usuario.permiso !== 'Permitido') {
+          return res.status(403).json({ message: 'Acceso denegado' });
+     }
+
      try {
           const usuarios = await model.obtenerUsuarios();
           res.status(200).json(usuarios);
@@ -87,10 +98,29 @@ const listarUsuarios = async (req, res) => {
      }
 };
 
+// ✅ Agregado: Actualizar rol o permiso
+const actualizarUsuario = async (req, res) => {
+     const { id } = req.params;
+     const { cargo, permiso } = req.body;
+
+     if (!cargo || !permiso) {
+          return res.status(400).json({ message: 'Cargo y permiso son requeridos.' });
+     }
+
+     try {
+          await model.actualizarUsuario(id, cargo, permiso);
+          res.status(200).json({ message: 'Usuario actualizado correctamente.' });
+     } catch (err) {
+          console.error('Error al actualizar usuario:', err);
+          res.status(500).json({ message: 'Error al actualizar usuario.' });
+     }
+};
+
 module.exports = {
      registrarUsuario,
      login,
      validarSesion,
      logout,
      listarUsuarios,
+     actualizarUsuario
 };
