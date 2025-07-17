@@ -1,9 +1,10 @@
 document.querySelectorAll(".cerrar-sesion").forEach(button => {
   button.addEventListener("click", () => {
-    fetch("http://localhost:3000/api/logout", {
+    fetch("http://localhost:3000/api/usuarios/logout", {
       method: "POST",
       credentials: "include"
     })
+
       .then(() => {
         localStorage.clear(); // Limpia todo
         window.location.href = "login.html";

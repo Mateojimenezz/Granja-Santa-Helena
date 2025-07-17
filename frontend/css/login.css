@@ -20,23 +20,24 @@ body {
 
 /* Botón de regresar */
 .btn-regresar {
-    position: absolute;
-    top: -40px;
-    left: 5px;
+    position: relative;
+    margin-bottom: 10px;
     background: none;
     border: none;
     color: var(--color-principal);
-    /* Verde */
     font-size: 1rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 5px;
+    justify-content: start;
+    width: 100%;
 }
 
 .btn-regresar:hover {
-    color: var(--color-principal);
+    color: darkgreen;
 }
+
 
 .login-box {
     background-color: white;
@@ -134,22 +135,23 @@ a:hover {
     transform: scale(1.05);
     text-decoration: underline;
 }
+
 /* estilo para pantallas pequeñas */
 @media (max-width: 768px) {
-     body{
+    body {
         padding: 15px 0px;
         margin: 0px;
         width: 90%;
-        max-width: fit-content  ;  
+        max-width: fit-content;
         height: 100vh;
         overflow: hidden;
-}
-.login-container{
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-    
-}
+    }
+
+    .login-container {
+        text-align: center;
+        width: 90%;
+        max-width: 400px;
 
     }
 
+}

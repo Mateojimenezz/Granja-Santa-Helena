@@ -1,6 +1,7 @@
 // File: backend/modules/usuarios/usuarios.controller.js 
 const model = require('./usuarios.model');
 const bcrypt = require('bcryptjs');
+const { registrarActividad } = require('./actividades.model');
 
 // Registro de usuario
 const registrarUsuario = async (req, res) => {
@@ -21,7 +22,14 @@ const registrarUsuario = async (req, res) => {
           const permiso = 'Denegado';
 
           await model.crearUsuario({ name, identification, email, phone, cargo, password, permiso });
+
+          // ✅ Registrar actividad de creación de usuario (solo si hay sesión activa)
+          if (req.session?.usuario?.nombre) {
+               await registrarActividad(req.session.usuario.nombre, `Registro de nuevo usuario: ${name}`);
+          }
+
           res.status(201).json({ message: 'Usuario registrado correctamente' });
+
      } catch (err) {
           console.error('Error registro:', err);
           res.status(500).json({ message: 'Error en el registro' });
@@ -57,7 +65,11 @@ const login = async (req, res) => {
 
           req.session.usuario = datosUsuario;
 
+          // ✅ Registrar actividad de inicio de sesión
+          await registrarActividad(user.Nombre, 'Inicio de sesión');
+
           res.status(200).json({ message: 'Inicio de sesión exitoso', user: datosUsuario });
+
      } catch (err) {
           console.error('Error login:', err);
           res.status(500).json({ message: 'Error en el servidor' });
@@ -115,6 +127,7 @@ const actualizarUsuario = async (req, res) => {
           res.status(500).json({ message: 'Error al actualizar usuario.' });
      }
 };
+
 
 module.exports = {
      registrarUsuario,

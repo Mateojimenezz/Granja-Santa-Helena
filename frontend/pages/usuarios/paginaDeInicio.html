@@ -14,6 +14,19 @@
       if (performance.navigation.type === 2) {
         location.reload(true);
       }
+      // ✅ Validar sesión antes de cargar la página
+  fetch("http://localhost:3000/api/usuarios/sesion", {
+    method: "GET",
+    credentials: "include"
+  })
+    .then(response => {
+      if (!response.ok) {
+        window.location.href = "login.html";
+      }
+    })
+    .catch(() => {
+      window.location.href = "login.html";
+    });
     </script>
   </head>
 <body>
