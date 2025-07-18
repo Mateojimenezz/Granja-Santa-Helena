@@ -1,6 +1,7 @@
 // backend/modules/usuarios/usuarios.model.js
 // Este archivo define el modelo de datos y las operaciones relacionadas con los usuarios.
 const db = require('../../config/db');
+const pool = require('../../config/db');
 const bcrypt = require('bcryptjs');
 
 // Buscar usuario por email
@@ -68,10 +69,13 @@ const actualizarUsuario = (id, cargo, permiso) => {
      });
 };
 
+
 module.exports = {
      buscarPorEmail,
      crearUsuario,
      usuarioExiste,
      obtenerUsuarios,
-     actualizarUsuario
+     actualizarUsuario,
+
 };
+

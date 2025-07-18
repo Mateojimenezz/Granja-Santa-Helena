@@ -2,6 +2,8 @@
 const model = require('./usuarios.model');
 const bcrypt = require('bcryptjs');
 const { registrarActividad } = require('./actividades.model');
+const path = require('path');
+const fs = require('fs');
 
 // Registro de usuario
 const registrarUsuario = async (req, res) => {
@@ -110,7 +112,7 @@ const listarUsuarios = async (req, res) => {
      }
 };
 
-// ✅ Agregado: Actualizar rol o permiso
+//  Actualizar rol o permiso
 const actualizarUsuario = async (req, res) => {
      const { id } = req.params;
      const { cargo, permiso } = req.body;
@@ -128,12 +130,12 @@ const actualizarUsuario = async (req, res) => {
      }
 };
 
-
 module.exports = {
      registrarUsuario,
      login,
      validarSesion,
      logout,
      listarUsuarios,
-     actualizarUsuario
+     actualizarUsuario,
+
 };

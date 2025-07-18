@@ -1,4 +1,16 @@
 //frontend/js/usuarios/registroDeActividades.js
+function formatearFecha(fechaISO) {
+  const fecha = new Date(fechaISO);
+  const dia = String(fecha.getDate()).padStart(2, '0');
+  const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+  const año = fecha.getFullYear();
+  const horas = String(fecha.getHours()).padStart(2, '0');
+  const minutos = String(fecha.getMinutes()).padStart(2, '0');
+  const segundos = String(fecha.getSeconds()).padStart(2, '0');
+
+  return `${dia}/${mes}/${año} ${horas}:${minutos}:${segundos}`;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   const filterDate = document.getElementById('filterDate');
   const filterUser = document.getElementById('filterUser');
@@ -102,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (matchesDate && matchesUser && matchesActivity) {
         const row = document.createElement('tr');
         row.innerHTML = `
-        <td>${item.fecha}</td>
+        <td>${formatearFecha(item.fecha)}</td>
         <td>${item.usuario}</td>
         <td>${item.actividad}</td>
       `;

@@ -5,6 +5,8 @@ const ctrl = require('./usuarios.controller');
 const granjasRoutes = require('./granjas.routes');
 const actividadesController = require('./actividades.controller');
 
+
+
 const verificarAdministrador = (req, res, next) => {
      if (!req.session?.usuario || req.session.usuario.permiso !== 'Permitido' || req.session.usuario.cargo !== 'Administrador') {
           return res.status(403).json({ mensaje: 'Acceso denegado: no tienes permiso' });
@@ -19,11 +21,9 @@ router.post('/logout', ctrl.logout);
 router.get('/sesion', ctrl.validarSesion);
 router.get('/', verificarAdministrador, ctrl.listarUsuarios);
 router.put('/:id', verificarAdministrador, ctrl.actualizarUsuario);
-
-// Rutas de actividades (solo para administradores con permiso)
 router.get('/actividades', verificarAdministrador, actividadesController.listarActividades); 
+router.use('/granjas', granjasRoutes); // obtener rutas de granjas
 
-// Rutas de granjas
-router.use('/granjas', granjasRoutes);
+
 
 module.exports = router;
